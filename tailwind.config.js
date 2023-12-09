@@ -6,6 +6,38 @@ export default {
     extend: {
       fontFamily: {
         grandstander: 'Grandstander, sans',
+        rocksalt: 'Rock Salt, sans',
+      },
+      keyframes: {
+        fadeOut: {
+          '0%': { opacity: 0, transform: 'translateX(-20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0px)' },
+        },
+        slideLeft: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateX(-700px)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateX(0px)',
+          },
+        },
+        slideRight: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateX(700px)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateX(0px)',
+          },
+        },
+      },
+      animation: {
+        fade: 'fadeOut 0.8s ease-in-out 0.2s forwards',
+        slideL: 'slideLeft 1.8s ease-in-out forwards',
+        slideR: 'slideRight 1.8s ease-in-out forwards',
       },
     },
   },

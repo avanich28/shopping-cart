@@ -1,11 +1,11 @@
+import pizzaLogo from '../assets/images/logo/pizza-logo.png';
+import ImageBox from './ImageBox';
 import LinkButton from './LinkButton';
 
 function Logo() {
   return (
     <LinkButton to="/" type="logo">
-      <div className="flex-none">
-        <img className="h-12 w-full" src="../../public/pizza.png" alt="pizza" />
-      </div>
+      <ImageBox src={pizzaLogo} alt="Pizza" className="h-12 w-12" />
       <h1>Napopizza</h1>
     </LinkButton>
   );

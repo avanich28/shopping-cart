@@ -1,5 +1,11 @@
+import HomeContent from '../features/content/HomeContent';
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <HomeContent />
+    </>
+  );
 }
 
 export default Home;

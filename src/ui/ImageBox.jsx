@@ -1,11 +1,7 @@
-function ImageBox({ src, alt }) {
+function ImageBox({ src, alt, className = '' }) {
   return (
-    <div className="flex flex-none items-center">
-      <img
-        className="h-auto w-full "
-        src={`../../../public/${src}`}
-        alt={alt}
-      />
+    <div className={`flex flex-none items-center ${className}`}>
+      <img className="h-auto w-full" src={src} alt={alt} />
     </div>
   );
 }
