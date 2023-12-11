@@ -9,24 +9,22 @@ import eatPizza from '../../assets/images/home/eat-pizza.jpg';
 import fastDelivery from '../../assets/images/home/fast-delivery.png';
 
 import { headerContents, useHeaderContents } from './useHeaderContents';
+import { useMenuLists } from '../menu/useMenuLists';
+
 import ImageBox from '../../ui/ImageBox';
 import LinkButton from '../../ui/LinkButton';
 import MenuItem from '../menu/MenuItem';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
-import { useMenuLists } from '../menu/useMenuLists';
-import { useMenus } from '../menu/useMenus';
 
 const NUM_LISTS = 3;
 
 function HomeContent() {
   const { currentContent, handleCurrentContent } = useHeaderContents();
-  const { data, isLoading } = useMenus();
-  const { id, title, detail } = currentContent;
+  const { start, handleMenuLists, side, isLoading, currentMenuLists } =
+    useMenuLists(NUM_LISTS);
 
-  const max = Math.ceil(data?.length / NUM_LISTS) - 1;
-  const { start, end, handleMenuLists, side } = useMenuLists(NUM_LISTS, max);
-  const currentMenuLists = data?.slice(start, end);
+  const { id, title, detail } = currentContent;
 
   return (
     <>
@@ -49,7 +47,7 @@ function HomeContent() {
                 key={content.id}
                 src={content.image}
                 alt={content.alt}
-                className="brightness-50"
+                type="advertise"
               />
             ))}
           </div>
@@ -97,7 +95,7 @@ function HomeContent() {
             <Spinner />
           ) : (
             <>
-              <Button type="chevron" onClick={() => handleMenuLists('left')}>
+              <Button type="secondary" onClick={() => handleMenuLists('left')}>
                 <HiOutlineChevronLeft />
               </Button>
               <div
@@ -106,11 +104,16 @@ function HomeContent() {
                   side === 'left' ? 'animate-slideL' : 'animate-slideR'
                 } flex w-[640px] justify-between`}
               >
-                {currentMenuLists?.map((pizza, id) => (
-                  <MenuItem pizza={pizza} detail={false} key={id} />
+                {currentMenuLists?.map((pizza) => (
+                  <MenuItem
+                    pizza={pizza}
+                    detail={false}
+                    key={pizza.name}
+                    type="primary"
+                  />
                 ))}
               </div>
-              <Button type="chevron" onClick={() => handleMenuLists('right')}>
+              <Button type="secondary" onClick={() => handleMenuLists('right')}>
                 <HiOutlineChevronRight />
               </Button>
             </>

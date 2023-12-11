@@ -1,18 +1,36 @@
 import { useState } from 'react';
+import { useMenus } from './useMenus';
 
-export function useMenuLists(max) {
+export function useMenuLists(NUM_LISTS, reuse = true) {
+  const { data, isLoading } = useMenus();
   const [menuLists, setMenuLists] = useState(0);
   const [side, setSide] = useState('');
-  const start = menuLists * 3;
-  const end = start + 3;
+  const max = Math.ceil(data?.length / NUM_LISTS) - 1;
+  const start = menuLists * NUM_LISTS;
+  const end = start + NUM_LISTS;
+  const currentMenuLists = data?.slice(start, end);
 
   function handleMenuLists(direction = '') {
     if (direction === 'left')
-      setMenuLists((num) => (num - 1 < 0 ? max : num - 1));
+      setMenuLists((num) => (num - 1 < 0 ? (!reuse ? max : num) : num - 1));
     if (direction === 'right')
-      setMenuLists((num) => (num + 1 > max ? 0 : num + 1));
+      setMenuLists((num) => (num + 1 > max ? (!reuse ? 0 : num) : num + 1));
     setSide(direction);
   }
 
-  return { start, end, handleMenuLists, side };
+  function handleClickPage(page) {
+    if (menuLists === page) return;
+    setMenuLists(page);
+  }
+
+  return {
+    pages: max + 1,
+    start,
+    handleMenuLists,
+    side,
+    isLoading,
+    currentMenuLists,
+    handleClickPage,
+    menuLists,
+  };
 }

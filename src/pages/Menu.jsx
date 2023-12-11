@@ -1,5 +1,11 @@
+import MenuLists from '../features/menu/MenuLists';
+
 function Menu() {
-  return <div>Menu</div>;
+  return (
+    <>
+      <MenuLists />
+    </>
+  );
 }
 
 export default Menu;

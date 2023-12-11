@@ -1,29 +1,43 @@
 import ImageBox from '../../ui/ImageBox';
-import pizzaXX from '../../assets/images/home/slice-pizza.jpg';
+import Button from '../../ui/Button';
+import { formatCurrency } from '../../utils/helpers';
 
-function MenuItem({ pizza, detail = true }) {
+function MenuItem({ pizza, detail = true, type }) {
   const { imageUrl, name, ingredients, unitPrice } = pizza;
 
+  const styleDefault = {
+    primary:
+      'flex w-48 flex-col items-center border-2 border-amber-100 p-2 text-[14px] tracking-wider transition-all hover:border-amber-300 cursor-auto',
+    secondary:
+      'flex w-[450px] gap-4 overflow-hidden border-2 border-amber-100 bg-white transition-all hover:border-amber-300 animate-slideD opacity-0',
+  };
+
   return (
-    <div className="flex w-48 flex-col items-center border-2 border-stone-300 p-2 text-[14px] tracking-wider transition-all hover:border-amber-300">
+    <Button className={styleDefault[type]}>
       <ImageBox
         // FIXME
-        src={pizzaXX}
+        src={imageUrl}
         alt={name}
-        className="mb-3 h-32 w-32 overflow-hidden rounded-full"
+        type={type}
       />
-      <h4>{name}</h4>
 
       {/* TODO */}
-      {detail && (
+      {detail ? (
         <>
-          <p>{ingredients.join(', ')}</p>
-          <p className="text-base font-semibold">{unitPrice}</p>
-          {/* FIXME */}
-          {/* <button>Add to cart</button> */}
+          <div className="mt-1 flex flex-col items-start">
+            <h4 className="text-lg font-semibold tracking-wider">{name}</h4>
+            <p className="text-left italic text-stone-500">
+              {ingredients.join(', ')}
+            </p>
+          </div>
+          <p className="mb-1 ml-auto mr-2 self-end text-xl font-semibold">
+            {formatCurrency(unitPrice)}
+          </p>
         </>
+      ) : (
+        <h4>{name}</h4>
       )}
-    </div>
+    </Button>
   );
 }
 
