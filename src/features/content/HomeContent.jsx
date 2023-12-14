@@ -21,8 +21,13 @@ const NUM_LISTS = 3;
 
 function HomeContent() {
   const { currentContent, handleCurrentContent } = useHeaderContents();
-  const { start, handleMenuLists, side, isLoading, currentMenuLists } =
-    useMenuLists(NUM_LISTS);
+  const {
+    menuLists: currentPage,
+    handleMenuLists,
+    side,
+    isLoading,
+    currentMenuLists,
+  } = useMenuLists(NUM_LISTS);
 
   const { id, title, detail } = currentContent;
 
@@ -90,7 +95,7 @@ function HomeContent() {
           Our Menus
         </h3>
 
-        <div className="flex min-h-[180px] items-center gap-9">
+        <div className="flex min-h-[180px] items-center gap-9 overflow-hidden">
           {isLoading ? (
             <Spinner />
           ) : (
@@ -99,7 +104,7 @@ function HomeContent() {
                 <HiOutlineChevronLeft />
               </Button>
               <div
-                key={start}
+                key={currentPage}
                 className={`${
                   side === 'left' ? 'animate-slideL' : 'animate-slideR'
                 } flex w-[640px] justify-between`}

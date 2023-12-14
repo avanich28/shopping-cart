@@ -48,7 +48,7 @@ export default {
         fade: 'fadeOut 0.8s ease-in-out 0.2s forwards',
         slideL: 'slideLeft 1.8s ease-in-out forwards',
         slideR: 'slideRight 1.8s ease-in-out forwards',
-        slideD: 'slideDown 1s ease-in-out forwards',
+        slideD: 'slideDown 0.5s ease-in-out forwards',
       },
     },
   },

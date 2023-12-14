@@ -10,6 +10,7 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import LogIn from './pages/LogIn';
 import ErrorFallBack from './ui/ErrorFallBack';
+import { SearchProvider } from './contexts/searchContext';
 
 const queryClient = new QueryClient();
 
@@ -46,7 +47,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <RouterProvider router={router} />
+      <SearchProvider>
+        <RouterProvider router={router} />
+      </SearchProvider>
     </QueryClientProvider>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function LinkButton({ children, to, type = '' }) {
+function LinkButton({ children, to, type = '', onClick }) {
   const styles = {
     logo: 'flex items-end gap-3 font-grandstander text-3xl font-semibold tracking-wide',
     nav: 'hover:border-b-8 hover:border-amber-50 hover:text-amber-50 uppercase',
@@ -12,7 +12,11 @@ function LinkButton({ children, to, type = '' }) {
       'mt-2 rounded-full bg-amber-300 px-3 py-1 text-sm uppercase tracking-wider transition-all ease-in-out hover:scale-105 hover:text-amber-50 active:scale-100',
   };
   return (
-    <Link to={to} className={`transition-all ease-in-out ${styles[type]}`}>
+    <Link
+      to={to}
+      className={`transition-all ease-in-out ${styles[type]}`}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );

@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { useMenus } from './useMenus';
+import { useSearch } from '../../contexts/searchContext';
 
 export function useMenuLists(NUM_LISTS, reuse = true) {
   const { data, isLoading } = useMenus();
   const [menuLists, setMenuLists] = useState(0);
   const [side, setSide] = useState('');
-  const max = Math.ceil(data?.length / NUM_LISTS) - 1;
+  const { updateQuery } = useSearch();
+
+  const filterData = updateQuery
+    ? data.filter((pizza) => pizza.name.toLowerCase().includes(updateQuery))
+    : data;
+
+  const max = Math.ceil(filterData?.length / NUM_LISTS) - 1;
   const start = menuLists * NUM_LISTS;
   const end = start + NUM_LISTS;
-  const currentMenuLists = data?.slice(start, end);
+  const currentMenuLists = filterData?.slice(start, end);
 
   function handleMenuLists(direction = '') {
     if (direction === 'left')
@@ -25,7 +32,6 @@ export function useMenuLists(NUM_LISTS, reuse = true) {
 
   return {
     pages: max + 1,
-    start,
     handleMenuLists,
     side,
     isLoading,

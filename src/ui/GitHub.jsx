@@ -8,7 +8,7 @@ function GitHub() {
       href="https://github.com/avanich28/shopping-cart.git"
     >
       <FaGithub className="text-5xl" />
-      <p className="text-xs">Copyright&copy; by avanich28</p>
+      <p className="text-xs">&copy; Copyright by avanich28</p>
     </Hyperlink>
   );
 }

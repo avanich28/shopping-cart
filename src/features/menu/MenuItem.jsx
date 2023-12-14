@@ -1,9 +1,11 @@
+import { formatCurrency } from '../../utils/helpers';
+import { useConvertCurrency } from '../../hooks/useConvertCurrency';
 import ImageBox from '../../ui/ImageBox';
 import Button from '../../ui/Button';
-import { formatCurrency } from '../../utils/helpers';
 
 function MenuItem({ pizza, detail = true, type }) {
   const { imageUrl, name, ingredients, unitPrice } = pizza;
+  const newUnitPrice = useConvertCurrency(unitPrice, 'THB');
 
   const styleDefault = {
     primary:
@@ -21,7 +23,6 @@ function MenuItem({ pizza, detail = true, type }) {
         type={type}
       />
 
-      {/* TODO */}
       {detail ? (
         <>
           <div className="mt-1 flex flex-col items-start">
@@ -30,8 +31,8 @@ function MenuItem({ pizza, detail = true, type }) {
               {ingredients.join(', ')}
             </p>
           </div>
-          <p className="mb-1 ml-auto mr-2 self-end text-xl font-semibold">
-            {formatCurrency(unitPrice)}
+          <p className="mb-1 ml-auto mr-2 self-end text-xl font-semibold tracking-wide">
+            {formatCurrency(newUnitPrice)}
           </p>
         </>
       ) : (
