@@ -1,14 +1,10 @@
-import { HiArrowLeftCircle } from 'react-icons/hi2';
-import { HiArrowRightCircle } from 'react-icons/hi2';
-import { HiOutlineChevronLeft } from 'react-icons/hi2';
-import { HiOutlineChevronRight } from 'react-icons/hi2';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 
 import slicePizza from '../../assets/images/home/slice-pizza.jpg';
 import pizzaOven from '../../assets/images/home/pizza-oven.jpg';
 import eatPizza from '../../assets/images/home/eat-pizza.jpg';
 import fastDelivery from '../../assets/images/home/fast-delivery.png';
 
-import { headerContents, useHeaderContents } from './useHeaderContents';
 import { useMenuLists } from '../menu/useMenuLists';
 
 import ImageBox from '../../ui/ImageBox';
@@ -16,11 +12,12 @@ import LinkButton from '../../ui/LinkButton';
 import MenuItem from '../menu/MenuItem';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
+import Heading from '../../ui/Heading';
+import HomeHeader from './HomeHeader';
 
 const NUM_LISTS = 3;
 
 function HomeContent() {
-  const { currentContent, handleCurrentContent } = useHeaderContents();
   const {
     menuLists: currentPage,
     handleMenuLists,
@@ -29,71 +26,15 @@ function HomeContent() {
     currentMenuLists,
   } = useMenuLists(NUM_LISTS);
 
-  const { id, title, detail } = currentContent;
-
   return (
     <>
-      <header className="relative flex flex-col items-center justify-center">
-        <Button
-          type="circleArrow"
-          className="left-1"
-          onClick={() => handleCurrentContent(id - 1)}
-        >
-          <HiArrowLeftCircle />
-        </Button>
-
-        <div className="relative flex h-[35rem] w-full flex-col items-center justify-center overflow-hidden">
-          <div
-            style={{ transform: `translateX(-${Number(id) * 100}%)` }}
-            className={`absolute flex transition-all duration-[1000ms] ease-in-out [&>div]:h-full [&>div]:w-full`}
-          >
-            {headerContents.map((content) => (
-              <ImageBox
-                key={content.id}
-                src={content.image}
-                alt={content.alt}
-                type="advertise"
-              />
-            ))}
-          </div>
-          <div
-            key={title}
-            className="z-10 w-[600px] animate-fade text-center text-stone-50 opacity-0"
-          >
-            <h2 className="mb-3 text-5xl font-bold uppercase leading-snug tracking-wider">
-              {title}
-            </h2>
-            <p className="text-xl font-semibold tracking-wide">{detail}</p>
-          </div>
-        </div>
-
-        <Button
-          type="circleArrow"
-          className="right-1"
-          onClick={() => handleCurrentContent(id + 1)}
-        >
-          <HiArrowRightCircle />
-        </Button>
-
-        <div className="absolute bottom-5 flex gap-6">
-          {headerContents.map((content) => (
-            <Button
-              key={content.id}
-              type="dot"
-              className={id === content.id ? 'bg-stone-50' : 'bg-stone-400'}
-              onClick={() => handleCurrentContent(content.id)}
-            />
-          ))}
-        </div>
-      </header>
+      <HomeHeader />
 
       <section
         className="flex flex-col items-center justify-center gap-2 px-2 py-8
       "
       >
-        <h3 className="mt-5 text-2xl font-bold uppercase tracking-widest text-red-700">
-          Our Menus
-        </h3>
+        <Heading type="primary">Our Menus</Heading>
 
         <div className="flex min-h-[180px] items-center gap-9 overflow-hidden">
           {isLoading ? (
@@ -172,10 +113,10 @@ function HomeContent() {
         ></div>
 
         <div className="flex flex-col justify-center gap-2 tracking-widest [&>*]:px-3">
-          <h4 className="flex flex-col text-3xl font-bold uppercase text-red-700">
+          <Heading className="flex flex-col text-3xl font-bold uppercase text-red-700">
             <span>Hot</span>
             <span>Promotion</span>
-          </h4>
+          </Heading>
           <p className="flex flex-col text-xl font-semibold">
             <span>Buy 5 Large Size</span>
             <span>Get 25% Discount</span>

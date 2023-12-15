@@ -1,3 +1,4 @@
+import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import { useSearch } from '../contexts/searchContext';
 import { useOutsideClick } from '../hooks/useOutsideClick';
@@ -25,6 +26,12 @@ function Search() {
         onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit(e) : '')}
         onClick={handleSubmit}
       >
+        <Button
+          className="relative left-[-35px] text-stone-400"
+          onClick={handleSubmit}
+        >
+          <HiMagnifyingGlass />
+        </Button>
         <Button onClick={toggleSearch} className="text-lg">
           <HiOutlineXMark />
         </Button>

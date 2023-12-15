@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
 function LinkButton({ children, to, type = '', onClick }) {
-  const styles = {
-    logo: 'flex items-end gap-3 font-grandstander text-3xl font-semibold tracking-wide',
+  const defaultStyles = {
+    logo: 'flex items-end gap-3 tracking-wide',
     nav: 'hover:border-b-8 hover:border-amber-50 hover:text-amber-50 uppercase',
     iconNav: 'text-stone-800 hover:text-amber-50 text-2xl',
     logIn:
@@ -14,7 +14,7 @@ function LinkButton({ children, to, type = '', onClick }) {
   return (
     <Link
       to={to}
-      className={`transition-all ease-in-out ${styles[type]}`}
+      className={`transition-all ease-in-out ${defaultStyles[type]}`}
       onClick={onClick}
     >
       {children}
