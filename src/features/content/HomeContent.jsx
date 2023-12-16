@@ -44,6 +44,7 @@ function HomeContent() {
               <Button type="secondary" onClick={() => handleMenuLists('left')}>
                 <HiOutlineChevronLeft />
               </Button>
+
               <div
                 key={currentPage}
                 className={`${
@@ -59,6 +60,7 @@ function HomeContent() {
                   />
                 ))}
               </div>
+
               <Button type="secondary" onClick={() => handleMenuLists('right')}>
                 <HiOutlineChevronRight />
               </Button>

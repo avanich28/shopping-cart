@@ -4,9 +4,9 @@ import ImageBox from '../../ui/ImageBox';
 import Button from '../../ui/Button';
 import Heading from '../../ui/Heading';
 
-function MenuItem({ pizza, detail = true, type }) {
-  const { imageUrl, name, ingredients, unitPrice } = pizza;
-  const newUnitPrice = useConvertCurrency(unitPrice, 'THB');
+function MenuItem({ pizza, detail = true, type, onClick }) {
+  const { imageUrl, name, ingredients, soldOut } = pizza;
+  console.log(pizza);
 
   const defaultStyles = {
     primary:
@@ -16,9 +16,18 @@ function MenuItem({ pizza, detail = true, type }) {
   };
 
   return (
-    <Button className={defaultStyles[type]}>
-      <ImageBox src={imageUrl} alt={name} type={type} />
-
+    <Button
+      className={`${defaultStyles[type]} ${
+        soldOut ? 'cursor-not-allowed' : ''
+      }`}
+      onClick={soldOut ? '' : onClick}
+    >
+      <ImageBox
+        src={imageUrl}
+        alt={name}
+        type={type}
+        className={soldOut ? 'grayscale' : ''}
+      />
       {detail ? (
         <>
           <div className="mt-1 flex flex-col items-start">
@@ -27,8 +36,8 @@ function MenuItem({ pizza, detail = true, type }) {
               {ingredients.join(', ')}
             </p>
           </div>
-          <p className="mb-1 ml-auto mr-2 self-end text-xl font-semibold tracking-wide">
-            {formatCurrency(newUnitPrice)}
+          <p className="mb-1 ml-auto mr-2 flex-none self-end text-base font-semibold uppercase tracking-wide text-red-700">
+            {soldOut && 'Sold out'}
           </p>
         </>
       ) : (

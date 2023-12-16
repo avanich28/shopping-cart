@@ -5,6 +5,8 @@ import MenuItem from './MenuItem';
 import Heading from '../../ui/Heading';
 import MenuListsOperation from './MenuListsOperation';
 import MenuPages from './MenuPages';
+import Modal from '../../ui/Modal';
+import ModalOpen from '../../ui/ModalOpen';
 
 const NUM_LISTS = 10;
 
@@ -30,17 +32,21 @@ function MenuLists() {
     <div className="flex flex-col items-center justify-center gap-3 px-3 py-10">
       <Heading type="primary">Menus</Heading>
 
-      <div className="flex flex-wrap justify-center gap-3">
-        <MenuListsOperation sortData={sortData} />
+      <Modal>
+        <div className="flex flex-wrap justify-center gap-3">
+          <MenuListsOperation sortData={sortData} />
 
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          currentMenuLists?.map((pizza) => (
-            <MenuItem pizza={pizza} key={pizza.name} type="secondary" />
-          ))
-        )}
-      </div>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            currentMenuLists?.map((pizza) => (
+              <ModalOpen pizza={pizza} key={pizza.name}>
+                <MenuItem pizza={pizza} type="secondary" />
+              </ModalOpen>
+            ))
+          )}
+        </div>
+      </Modal>
 
       <MenuPages
         pages={pages}
