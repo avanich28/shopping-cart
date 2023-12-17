@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMenus } from './useMenus';
 import { useSearch } from '../../contexts/searchContext';
 
-export function useMenuLists(NUM_LISTS, reuse = true) {
+export function useMenuLists(NUM_LISTS, reuse = false) {
   const { data, isLoading } = useMenus();
   const [menuLists, setMenuLists] = useState(0);
   const [side, setSide] = useState('');
@@ -19,9 +19,9 @@ export function useMenuLists(NUM_LISTS, reuse = true) {
 
   function handleMenuLists(direction = '') {
     if (direction === 'left')
-      setMenuLists((num) => (num - 1 < 0 ? (!reuse ? max : num) : num - 1));
+      setMenuLists((num) => (num - 1 < 0 ? (reuse ? max : num) : num - 1));
     if (direction === 'right')
-      setMenuLists((num) => (num + 1 > max ? (!reuse ? 0 : num) : num + 1));
+      setMenuLists((num) => (num + 1 > max ? (reuse ? 0 : num) : num + 1));
     setSide(direction);
   }
 

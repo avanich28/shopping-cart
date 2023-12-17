@@ -24,7 +24,7 @@ function HomeContent() {
     side,
     isLoading,
     currentMenuLists,
-  } = useMenuLists(NUM_LISTS);
+  } = useMenuLists(NUM_LISTS, true);
 
   return (
     <>

@@ -13,8 +13,8 @@ function SearchProvider({ children }) {
 
   function toggleSearch(e) {
     e.preventDefault();
-    e.stopPropagation(); // IMPT
-    setOpenSearch((open) => !open);
+    e.stopPropagation();
+    setOpenSearch((isOpen) => !isOpen);
     if (query) setQuery('');
   }
 

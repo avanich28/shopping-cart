@@ -41,7 +41,7 @@ function MenuLists() {
           ) : (
             currentMenuLists?.map((pizza) => (
               <ModalOpen pizza={pizza} key={pizza.name}>
-                <MenuItem pizza={pizza} type="secondary" />
+                <MenuItem pizza={pizza} type="secondary" imgGrey={true} />
               </ModalOpen>
             ))
           )}

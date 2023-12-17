@@ -1,32 +1,32 @@
-import { formatCurrency } from '../../utils/helpers';
-import { useConvertCurrency } from '../../hooks/useConvertCurrency';
 import ImageBox from '../../ui/ImageBox';
 import Button from '../../ui/Button';
 import Heading from '../../ui/Heading';
 
-function MenuItem({ pizza, detail = true, type, onClick }) {
+function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
   const { imageUrl, name, ingredients, soldOut } = pizza;
-  console.log(pizza);
 
   const defaultStyles = {
     primary:
       'flex w-48 flex-col items-center border-2 border-amber-100 p-2 text-[14px] tracking-wider transition-all hover:border-amber-300 cursor-auto',
     secondary:
-      'flex w-[450px] gap-4 overflow-hidden border-2 border-amber-100 bg-white transition-all hover:border-amber-300 animate-slideD opacity-0',
+      'flex w-[450px] gap-4 overflow-hidden border border-amber-100 bg-white transition-all hover:border-amber-300 animate-slideD opacity-0',
   };
 
   return (
     <Button
       className={`${defaultStyles[type]} ${
-        soldOut ? 'cursor-not-allowed' : ''
+        soldOut && imgGrey
+          ? 'cursor-not-allowed border-stone-300 hover:border-stone-300'
+          : ''
       }`}
-      onClick={soldOut ? '' : onClick}
+      onClick={onClick}
+      disabled={soldOut}
     >
       <ImageBox
         src={imageUrl}
         alt={name}
         type={type}
-        className={soldOut ? 'grayscale' : ''}
+        className={soldOut && imgGrey ? 'grayscale' : ''}
       />
       {detail ? (
         <>

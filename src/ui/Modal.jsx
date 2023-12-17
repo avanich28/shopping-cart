@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import Button from './Button';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import { useSearch } from '../contexts/searchContext';
 
 const ModalContext = createContext();
 
@@ -21,13 +22,20 @@ function Modal({ children }) {
 // children = button
 function Open({ children, openWindowName }) {
   const { open } = useModal();
+  const { openSearch, setOpenSearch } = useSearch();
 
-  return cloneElement(children, { onClick: () => open(openWindowName) });
+  return cloneElement(children, {
+    onClick: (e) => {
+      e.stopPropagation();
+      open(openWindowName);
+      if (openSearch) setOpenSearch(false);
+    },
+  });
 }
 
 function Window({ children, name }) {
   const { close, modalName } = useModal();
-  const { ref } = useOutsideClick(close, true);
+  const { ref } = useOutsideClick(close);
 
   if (name !== modalName) return null;
 
@@ -39,11 +47,12 @@ function Window({ children, name }) {
       >
         <Button
           onClick={close}
-          className="mb-3 self-end text-lg hover:text-amber-300"
+          className="mb-3 self-end text-lg"
+          type="secondary"
         >
           <HiOutlineXMark />
         </Button>
-        {/* FIXME */}
+        {/* FIXME When click Add to Cart */}
         {/* <div>{cloneElement(children, { onCloseModal: close })}</div> */}
         {children}
       </div>
