@@ -10,7 +10,7 @@ function Button({
     primary:
       'rounded-full bg-amber-300 px-3 py-1 text-sm uppercase tracking-wider ease-in-out hover:scale-105 hover:text-amber-50 active:scale-100',
     secondary: 'hover:text-amber-300',
-    tertiary: 'rounded-full border-2 px-2 py-1 capitalize',
+    tertiary: 'rounded-full border-2 px-2 py-1 uppercase text-sm font-semibold',
     dot: 'h-2 w-2 rounded-full',
     circleArrow: 'absolute text-6xl opacity-80 z-10 text-stone-50',
     iconNav: 'text-stone-800 hover:text-amber-50 text-2xl',

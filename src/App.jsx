@@ -12,6 +12,7 @@ import LogIn from './pages/LogIn';
 import ErrorFallBack from './ui/ErrorFallBack';
 import { SearchProvider } from './contexts/searchContext';
 import Cart from './pages/Cart';
+import OrderForm from './features/order/OrderForm';
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
+      },
+      {
+        path: '/order',
+        element: <OrderForm />,
       },
       {
         path: '/about-us',

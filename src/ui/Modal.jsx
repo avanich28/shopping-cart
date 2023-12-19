@@ -52,9 +52,7 @@ function Window({ children, name }) {
         >
           <HiOutlineXMark />
         </Button>
-        {/* FIXME When click Add to Cart */}
-        {/* <div>{cloneElement(children, { onCloseModal: close })}</div> */}
-        {children}
+        {cloneElement(children, { onCloseModal: close })}
       </div>
     </div>,
     document.body,

@@ -1,5 +1,11 @@
+import CartLists from '../features/cart/CartLists';
+
 function Cart() {
-  return <div>Cart</div>;
+  return (
+    <>
+      <CartLists />
+    </>
+  );
 }
 
 export default Cart;

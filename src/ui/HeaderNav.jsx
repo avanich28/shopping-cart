@@ -25,7 +25,7 @@ function HeaderNav() {
       <Button type="iconNav" onClick={toggleSearch}>
         <HiMiniMagnifyingGlass />
       </Button>
-      <LinkButton type="iconNav" onClick={resetSearch}>
+      <LinkButton to="cart" type="iconNav" onClick={resetSearch}>
         <HiOutlineShoppingCart />
       </LinkButton>
       <LinkButton type="iconNav">
