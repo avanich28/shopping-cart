@@ -5,7 +5,7 @@ function MenuListsOperation({ sortData }) {
   const { updateQuery } = useSearch();
 
   return (
-    <div className="flex w-full justify-center gap-10">
+    <div className="flex w-full justify-center gap-10 font-semibold uppercase">
       <p>
         {updateQuery
           ? `Showing results for: ${updateQuery} (${sortData?.length})`
@@ -19,6 +19,7 @@ function MenuListsOperation({ sortData }) {
           { value: 'price-asc', label: 'price (low first)' },
           { value: 'price-desc', label: 'price (high first)' },
         ]}
+        type="primary"
       />
     </div>
   );

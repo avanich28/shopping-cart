@@ -1,38 +1,32 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useConvertCurrency } from '../../hooks/useConvertCurrency';
 import { formatCurrency } from '../../utils/helpers';
-import { addItem, getCart } from '../cart/cartSlice';
-
+import { addItem } from '../cart/cartSlice';
 import Button from '../../ui/Button';
-import Heading from '../../ui/Heading';
 import ImageBox from '../../ui/ImageBox';
-import LinkButton from '../../ui/LinkButton';
-import { HiMiniMinusCircle, HiMiniPlusCircle } from 'react-icons/hi2';
+import QuantityButton from '../../ui/QuantityButton';
+import MenuModalItem from './MenuModalItem';
+import MenuHeader from './MenuHeader';
+
+const SIZES = ['small', 'medium', 'large'];
 
 function MenuModal({ pizza, onCloseModal }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const [currentSize, setCurrentSize] = useState(SIZES[0]);
   const { imageUrl, name, ingredients, unitPrice } = pizza;
   const newUnitPrice = useConvertCurrency(unitPrice, 'THB');
-  const [curSize, setCurSize] = useState({});
-  const totalPrice = curSize.price && curSize.price * quantity;
 
-  const cart = useSelector(getCart);
-  console.log(cart);
+  let currentPrice;
+  if (currentSize === SIZES[0])
+    currentPrice = newUnitPrice && newUnitPrice - 200;
+  if (currentSize === SIZES[1]) currentPrice = newUnitPrice - 100;
+  if (currentSize === SIZES[2]) currentPrice = newUnitPrice;
 
-  const allSizePrices = [
-    {
-      size: 'small',
-      price: newUnitPrice - 200,
-    },
-    {
-      size: 'medium',
-      price: newUnitPrice - 100,
-    },
-    { size: 'large', price: newUnitPrice },
-  ];
+  const totalPrice = currentPrice * quantity;
 
   function handleInc() {
     setQuantity((num) => num + 1);
@@ -42,80 +36,60 @@ function MenuModal({ pizza, onCloseModal }) {
     setQuantity((num) => (num - 1 >= 1 ? num - 1 : 1));
   }
 
-  function handleAddToCart() {
-    if (!curSize.size) return;
-
+  function handleAddToCart(goToCart = false) {
     const order = {
       name,
       imageUrl,
-      size: curSize.size,
+      size: currentSize,
       quantity,
-      unitPrice: curSize.price,
+      unitPrice: currentPrice,
       totalPrice,
     };
 
     dispatch(addItem(order));
-    onCloseModal();
+    if (goToCart === true) navigate('/cart');
+    else onCloseModal();
   }
 
   return (
-    <div className="flex flex-col justify-center gap-5">
+    <div className="flex w-[500px] flex-col justify-center gap-5">
       <header>
-        <Heading type="secondary" className="text-[30px]">
-          {name}
-        </Heading>
-        <p className="italic text-stone-500">{ingredients.join(', ')}</p>
+        <MenuHeader name={name} ingredients={ingredients} size="text-[31px]" />
       </header>
 
       <main className="flex flex-col gap-3 tracking-wide [&>*]:flex [&>*]:items-center">
         <ImageBox src={imageUrl} alt={name} type="tertiary" />
-        <div className="gap-11">
-          <p className="font-bold">Size:</p>
-          <div className={`flex gap-3`}>
-            {allSizePrices.map((data) => (
-              <Button
-                type="tertiary"
-                className={
-                  curSize.size === data.size
-                    ? 'border-amber-100 bg-amber-300'
-                    : ''
-                }
-                onClick={() => setCurSize(data)}
-                key={data.size}
-              >
-                {data.size} {formatCurrency(data.price)}
-              </Button>
-            ))}
-          </div>
-        </div>
-        <div className="gap-3">
-          <p className="font-bold">Quantity:</p>
-          <div className="flex items-center">
+        <MenuModalItem label="size">
+          {SIZES.map((size) => (
             <Button
-              className="text-2xl text-amber-300 hover:scale-110 active:scale-100"
-              onClick={handleDec}
+              key={size}
+              onClick={() => setCurrentSize(size)}
+              type={currentSize === size ? 'activeSize' : 'tertiary'}
+              className="mr-3"
             >
-              <HiMiniMinusCircle />
+              {size}
             </Button>
-            <span className="w-[50px] text-center">{quantity}</span>
-            <Button
-              className="text-2xl text-amber-300 hover:scale-110 active:scale-100"
-              onClick={handleInc}
-            >
-              <HiMiniPlusCircle />
-            </Button>
-          </div>
-        </div>
-        <div className="gap-11">
-          <p className="font-bold">Total:</p>
-          <p>{(totalPrice && formatCurrency(totalPrice)) || '-'}</p>
-        </div>
+          ))}
+        </MenuModalItem>
+        <MenuModalItem label="quantity">
+          <QuantityButton
+            onClickDec={handleDec}
+            onClickInc={handleInc}
+            quantity={quantity}
+          />
+        </MenuModalItem>
+        <MenuModalItem label="price">
+          {(currentPrice && formatCurrency(currentPrice)) || null}
+        </MenuModalItem>
+        <MenuModalItem label="total">
+          {(totalPrice && formatCurrency(totalPrice)) || null}
+        </MenuModalItem>
       </main>
 
-      <footer className="ml-auto mt-2 flex items-center gap-3">
-        <LinkButton to="/cart" type="secondary">
+      <footer className="ml-auto mt-2 flex items-center gap-2">
+        <Button type="quaternary" onClick={() => handleAddToCart(true)}>
           Buy Now
-        </LinkButton>
+        </Button>
         <Button type="primary" onClick={handleAddToCart}>
           + Add to Cart
         </Button>

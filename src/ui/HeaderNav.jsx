@@ -4,6 +4,7 @@ import { HiMiniMagnifyingGlass } from 'react-icons/hi2';
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import Button from './Button';
 import { useSearch } from '../contexts/searchContext';
+import CartCount from '../features/cart/CartCount';
 
 function HeaderNav() {
   const { toggleSearch, resetSearch } = useSearch();
@@ -26,7 +27,7 @@ function HeaderNav() {
         <HiMiniMagnifyingGlass />
       </Button>
       <LinkButton to="cart" type="iconNav" onClick={resetSearch}>
-        <HiOutlineShoppingCart />
+        <CartCount />
       </LinkButton>
       <LinkButton type="iconNav">
         <HiMoon />

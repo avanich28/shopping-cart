@@ -1,8 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
 
-function SortBy({ id, options }) {
+function SortBy({ id, options, type, className = '' }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortBy = searchParams.get('sortBy') || options[0].value;
+
+  const defaultStyles = {
+    primary:
+      'rounded-md border-2 border-amber-200 uppercase focus:border-amber-300 focus:outline-none',
+  };
 
   function handleChange(e) {
     searchParams.set('sortBy', e.target.value);
@@ -14,7 +19,7 @@ function SortBy({ id, options }) {
       <label htmlFor={id}>Sort By</label>
       <select
         id={id}
-        className="border-2 border-amber-200 focus:border-amber-300 focus:outline-none"
+        className={`${defaultStyles[type]} ${className}`}
         onChange={handleChange}
         value={sortBy}
       >

@@ -29,12 +29,12 @@ function MenuLists() {
   if (direction === 'desc') sortData = sortData?.reverse();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3 px-3 py-10">
+    <div className="flex h-full flex-col items-center gap-3 px-3 py-10">
       <Heading type="primary">Menus</Heading>
 
       <Modal>
-        <div className="flex flex-wrap justify-center gap-3">
-          <MenuListsOperation sortData={sortData} />
+        <div className="flex h-full flex-wrap items-center justify-center gap-3">
+          {!isLoading && <MenuListsOperation sortData={sortData} />}
 
           {isLoading ? (
             <Spinner />
@@ -48,13 +48,15 @@ function MenuLists() {
         </div>
       </Modal>
 
-      <MenuPages
-        pages={pages}
-        isLoading={isLoading}
-        currentPage={currentPage}
-        onMenuLists={handleMenuLists}
-        onClickPage={handleClickPage}
-      />
+      {pages > 1 && (
+        <MenuPages
+          pages={pages}
+          isLoading={isLoading}
+          currentPage={currentPage}
+          onMenuLists={handleMenuLists}
+          onClickPage={handleClickPage}
+        />
+      )}
     </div>
   );
 }

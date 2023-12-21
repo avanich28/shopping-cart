@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { HiMiniMinusCircle, HiMiniPlusCircle } from 'react-icons/hi2';
 import { formatCurrency } from '../../utils/helpers';
 import { decreaseQuantity, deleteItem, increaseQuantity } from './cartSlice';
 import Button from '../../ui/Button';
 import Heading from '../../ui/Heading';
 import ImageBox from '../../ui/ImageBox';
+import DetailBox from '../../ui/DetailBox';
+import QuantityButton from '../../ui/QuantityButton';
 
 function CartItem({ cart }) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function CartItem({ cart }) {
   if (size === 'large') sizeColor = 'bg-red-400';
 
   function handleDeleteItem() {
-    dispatch(deleteItem(name, size));
+    dispatch(deleteItem(itemDetail));
   }
 
   function handleDec() {
@@ -40,42 +41,31 @@ function CartItem({ cart }) {
             className="mt-3 h-[70px] w-[70px] border-[3px] border-amber-300"
           />
         </div>
+
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <Heading type="secondary">{name}</Heading>
-            <span
-              className={`rounded-lg ${sizeColor} p-1 px-2 text-sm font-bold uppercase tracking-wide text-stone-50`}
-            >
+            <DetailBox type="primary" bgColor={sizeColor}>
               {size}
-            </span>
+            </DetailBox>
           </div>
           <div className="flex items-center gap-2">
-            <span className="rounded-lg bg-stone-300 px-2 py-1 text-sm font-bold tracking-wide text-stone-50">
+            <DetailBox type="primary" bgColor="bg-stone-300">
               {formatCurrency(unitPrice)}
-            </span>
-            <span className="rounded-lg bg-amber-300 px-2 py-1 text-sm font-bold uppercase tracking-wide text-stone-50">
+            </DetailBox>
+            <DetailBox type="primary" bgColor="bg-amber-300">
               Total {formatCurrency(totalPrice)}
-            </span>
+            </DetailBox>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-5">
-        <span className="flex">
-          <Button
-            className="text-2xl text-amber-300 hover:scale-110 active:scale-100"
-            onClick={handleDec}
-          >
-            <HiMiniMinusCircle />
-          </Button>
-          <span className="w-[50px] text-center">{quantity}</span>
-          <Button
-            className="text-2xl text-amber-300 hover:scale-110 active:scale-100"
-            onClick={handleInc}
-          >
-            <HiMiniPlusCircle />
-          </Button>
-        </span>
+      <div className="flex gap-5">
+        <QuantityButton
+          onClickDec={handleDec}
+          onClickInc={handleInc}
+          quantity={quantity}
+        />
         <Button type="primary" onClick={handleDeleteItem}>
           Delete
         </Button>

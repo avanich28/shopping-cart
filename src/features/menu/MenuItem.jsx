@@ -1,6 +1,7 @@
 import ImageBox from '../../ui/ImageBox';
 import Button from '../../ui/Button';
 import Heading from '../../ui/Heading';
+import MenuHeader from './MenuHeader';
 
 function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
   const { imageUrl, name, ingredients, soldOut } = pizza;
@@ -31,10 +32,7 @@ function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
       {detail ? (
         <>
           <div className="mt-1 flex flex-col items-start">
-            <Heading type="secondary">{name}</Heading>
-            <p className="text-left italic text-stone-500">
-              {ingredients.join(', ')}
-            </p>
+            <MenuHeader name={name} ingredients={ingredients} size="text-lg" />
           </div>
           <p className="mb-1 ml-auto mr-2 flex-none self-end text-base font-semibold uppercase tracking-wide text-red-700">
             {soldOut && 'Sold out'}

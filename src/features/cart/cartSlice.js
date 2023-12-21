@@ -19,22 +19,11 @@ const cartSlice = createSlice({
         item.totalPrice += action.payload.totalPrice;
       } else state.cart.push(action.payload);
     },
-    deleteItem: {
-      prepare(name, size) {
-        return {
-          payload: {
-            name,
-            size,
-          },
-        };
-      },
-      reducer(state, action) {
-        state.cart = state.cart.filter((item) =>
-          item.name === action.payload.name && item.size === action.payload.size
-            ? false
-            : true,
-        );
-      },
+    deleteItem(state, action) {
+      const [name, size] = action.payload.split('-');
+      state.cart = state.cart.filter((item) =>
+        item.name === name && item.size === size ? false : true,
+      );
     },
     decreaseQuantity(state, action) {
       const [name, size] = action.payload.split('-');
@@ -44,13 +33,7 @@ const cartSlice = createSlice({
       item.quantity =
         item.quantity - 1 > 0
           ? --item.quantity
-          : cartSlice.caseReducers.deleteItem(state, {
-              type: 'deleteItem',
-              payload: {
-                name,
-                size,
-              },
-            });
+          : cartSlice.caseReducers.deleteItem(state, action);
       item.totalPrice = item.unitPrice * item.quantity;
     },
     increaseQuantity(state, action) {
