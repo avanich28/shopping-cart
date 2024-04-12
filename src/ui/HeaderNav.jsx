@@ -1,7 +1,6 @@
 import LinkButton from './LinkButton';
 import { HiMoon } from 'react-icons/hi2';
 import { HiMiniMagnifyingGlass } from 'react-icons/hi2';
-import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import Button from './Button';
 import { useSearch } from '../contexts/searchContext';
 import CartCount from '../features/cart/CartCount';

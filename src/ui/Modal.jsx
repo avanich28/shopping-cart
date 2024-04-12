@@ -40,7 +40,7 @@ function Window({ children, name }) {
   if (name !== modalName) return null;
 
   return createPortal(
-    <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-stone-400/30 backdrop-blur-[2px]">
+    <div className="fixed left-0 top-0 z-50 flex h-screen w-screen animate-slideD items-center justify-center bg-stone-400/30 backdrop-blur-[2px]">
       <div
         ref={ref}
         className="fixed flex flex-col rounded-3xl bg-stone-50 p-6"

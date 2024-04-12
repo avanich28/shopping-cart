@@ -4,12 +4,12 @@ import Footer from './Footer';
 
 function AppLayout() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto]">
+    <div className="flex h-[100vh] flex-col">
       <Header />
-      <main className="min-h-screen bg-stone-50">
+      <main className="h-full bg-stone-50">
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -13,6 +13,7 @@ function CartLists() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const carts = useSelector(getCart);
+  const totalItems = carts.reduce((acc, cur) => acc + cur.quantity, 0);
   const totalPrices = carts.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
   // TODO
@@ -25,7 +26,7 @@ function CartLists() {
       <header className="mb-3 flex items-center justify-between gap-2">
         <Heading type="primary">My Cart</Heading>
         <DetailBox type="primary" bgColor="bg-stone-400" className="ml-auto">
-          {carts.length} Item{carts.length > 1 && 's'}
+          {totalItems} Item{totalItems > 1 && 's'}
         </DetailBox>
         <DetailBox type="primary" bgColor="bg-orange-500">
           Total {formatCurrency(totalPrices)}

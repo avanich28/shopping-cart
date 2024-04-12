@@ -7,6 +7,7 @@ export default {
       fontFamily: {
         grandstander: 'Grandstander, sans',
         rocksalt: 'Rock Salt, sans',
+        zcool: 'ZCOOL KuaiLe, sans-serif',
       },
       keyframes: {
         fadeOut: {

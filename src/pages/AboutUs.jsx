@@ -1,5 +1,11 @@
+import AboutUsContent from '../features/content/AboutUsContent';
+
 function AboutUs() {
-  return <div>About Us</div>;
+  return (
+    <>
+      <AboutUsContent />
+    </>
+  );
 }
 
 export default AboutUs;

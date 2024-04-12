@@ -1,3 +1,5 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 function ImageBox({ src, alt, type, className = '' }) {
   const defaultStyle = {
     primary: 'mb-3 h-32 w-32 overflow-hidden rounded-full',
@@ -11,7 +13,7 @@ function ImageBox({ src, alt, type, className = '' }) {
     <div
       className={`flex flex-none items-center ${defaultStyle[type]} ${className}`}
     >
-      <img className="h-auto w-full" src={src} alt={alt} />
+      <LazyLoadImage className="h-auto w-full" src={src} alt={alt} />
     </div>
   );
 }
