@@ -1,11 +1,11 @@
-import pizzeria from '../../assets/images/contact/pizza-restaurant.jpg';
+import pizzeria from '../../assets/images/aboutUs/pizza-restaurant.jpg';
 
 import Heading from '../../ui/Heading';
 
 function AboutUsContent() {
   return (
     <div className="flex h-full [&>div]:flex-1">
-      <div className="flex flex-col justify-center gap-5 px-5">
+      <div className="flex animate-slideD flex-col justify-center gap-5 px-5">
         <Heading type="primary">About us</Heading>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
@@ -19,7 +19,7 @@ function AboutUsContent() {
       </div>
       <div
         style={{ backgroundImage: `url(${pizzeria})` }}
-        className="h-full bg-cover bg-center"
+        className="h-full animate-slideR bg-cover bg-center"
       ></div>
     </div>
   );

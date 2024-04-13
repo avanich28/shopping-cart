@@ -17,7 +17,7 @@ export default {
         slideLeft: {
           '0%': {
             opacity: 0,
-            transform: 'translateX(-700px)',
+            transform: 'translateX(-10px)',
           },
           '100%': {
             opacity: 1,
@@ -27,7 +27,7 @@ export default {
         slideRight: {
           '0%': {
             opacity: 0,
-            transform: 'translateX(700px)',
+            transform: 'translateX(10px)',
           },
           '100%': {
             opacity: 1,
@@ -47,8 +47,8 @@ export default {
       },
       animation: {
         fade: 'fadeOut 0.8s ease-in-out 0.2s forwards',
-        slideL: 'slideLeft 1.8s ease-in-out forwards',
-        slideR: 'slideRight 1.8s ease-in-out forwards',
+        slideL: 'slideLeft 1s ease-in-out forwards',
+        slideR: 'slideRight 1s ease-in-out forwards',
         slideD: 'slideDown 0.5s ease-in-out forwards',
       },
     },

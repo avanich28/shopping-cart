@@ -20,7 +20,7 @@ function Search() {
   return (
     <div ref={ref}>
       <Input
-        className="absolute z-10 flex w-full animate-slideD items-center gap-2 bg-amber-100 px-5 py-5"
+        className="absolute z-10 flex w-full animate-slideD items-center gap-2 bg-stone-800 px-5 py-5"
         id="search"
         type="text"
         onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit(e) : '')}
@@ -32,7 +32,7 @@ function Search() {
         >
           <HiMagnifyingGlass />
         </Button>
-        <Button onClick={toggleSearch} className="text-lg">
+        <Button onClick={toggleSearch} className="text-lg text-stone-50">
           <HiOutlineXMark />
         </Button>
       </Input>

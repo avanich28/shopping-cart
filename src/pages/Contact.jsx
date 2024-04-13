@@ -1,5 +1,11 @@
+import ContactUsContent from '../features/content/ContactUsContent';
+
 function Contact() {
-  return <div>Contact us</div>;
+  return (
+    <>
+      <ContactUsContent />
+    </>
+  );
 }
 
 export default Contact;
