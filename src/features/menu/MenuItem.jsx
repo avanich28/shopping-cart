@@ -10,7 +10,7 @@ function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
     primary:
       'flex w-48 flex-col items-center border-2 border-amber-100 p-2 text-[14px] tracking-wider transition-all hover:border-amber-300 cursor-auto',
     secondary:
-      'flex w-[450px] gap-4 overflow-hidden border border-amber-100 bg-white transition-all hover:border-amber-300 animate-slideD opacity-0',
+      'flex gap-4 overflow-hidden transition-all hover:bg-stone-200 animate-slideD opacity-0 w-full',
   };
 
   return (
@@ -32,9 +32,13 @@ function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
       {detail ? (
         <>
           <div className="mt-1 flex flex-col items-start">
-            <MenuHeader name={name} ingredients={ingredients} size="text-lg" />
+            <MenuHeader
+              name={name}
+              ingredients={ingredients}
+              size="text-base"
+            />
           </div>
-          <p className="mb-1 ml-auto mr-2 flex-none self-end text-base font-semibold uppercase tracking-wide text-red-700">
+          <p className="text-md mb-1 ml-auto mr-2 flex-none self-end font-semibold uppercase tracking-wide text-red-700">
             {soldOut && 'Sold out'}
           </p>
         </>

@@ -16,6 +16,7 @@ export function useMenuLists(NUM_LISTS, reuse = false) {
   const start = menuLists * NUM_LISTS;
   const end = start + NUM_LISTS;
   const currentMenuLists = filterData?.slice(start, end);
+  const totalItems = filterData?.length;
 
   function handleMenuLists(direction = '') {
     if (direction === 'left')
@@ -38,5 +39,6 @@ export function useMenuLists(NUM_LISTS, reuse = false) {
     currentMenuLists,
     handleClickPage,
     menuLists,
+    totalItems,
   };
 }

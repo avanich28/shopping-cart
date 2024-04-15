@@ -8,7 +8,7 @@ import MenuPages from './MenuPages';
 import Modal from '../../ui/Modal';
 import ModalOpen from '../../ui/ModalOpen';
 
-const NUM_LISTS = 10;
+const NUM_LISTS = 5;
 
 function MenuLists() {
   const {
@@ -18,6 +18,7 @@ function MenuLists() {
     currentMenuLists,
     handleClickPage,
     menuLists: currentPage,
+    totalItems,
   } = useMenuLists(NUM_LISTS);
   const { field, direction } = useSort();
 
@@ -29,13 +30,16 @@ function MenuLists() {
   if (direction === 'desc') sortData = sortData?.reverse();
 
   return (
-    <div className="flex h-full flex-col items-center gap-3 px-3 py-10">
-      <Heading type="primary">Menus</Heading>
+    <div className="flex h-full flex-col gap-3 px-5 py-10">
+      <div className="flex">
+        <Heading type="primary">Menus</Heading>
+        {!isLoading && (
+          <MenuListsOperation sortData={sortData} totalItems={totalItems} />
+        )}
+      </div>
 
-      <Modal>
-        <div className="flex h-full flex-wrap items-center justify-center gap-3">
-          {!isLoading && <MenuListsOperation sortData={sortData} />}
-
+      <div className="divide-y border-y">
+        <Modal>
           {isLoading ? (
             <Spinner />
           ) : (
@@ -45,8 +49,8 @@ function MenuLists() {
               </ModalOpen>
             ))
           )}
-        </div>
-      </Modal>
+        </Modal>
+      </div>
 
       {pages > 1 && (
         <MenuPages

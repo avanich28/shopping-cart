@@ -1,15 +1,15 @@
 import { useSearch } from '../../contexts/searchContext';
 import SortBy from '../../ui/SortBy';
 
-function MenuListsOperation({ sortData }) {
+function MenuListsOperation({ sortData, totalItems }) {
   const { updateQuery } = useSearch();
 
   return (
-    <div className="flex w-full justify-center gap-10 font-semibold uppercase">
+    <div className="ml-auto flex items-center gap-2 text-base">
       <p>
         {updateQuery
-          ? `Showing results for: ${updateQuery} (${sortData?.length})`
-          : `${sortData?.length} items`}
+          ? `Showing results for: ${updateQuery} (${sortData?.length} items)`
+          : `(${totalItems} items)`}
       </p>
       <SortBy
         id="defaultSort"

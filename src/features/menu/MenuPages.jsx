@@ -9,13 +9,10 @@ function MenuPages({
   onClickPage,
 }) {
   return (
-    <div className="mt-10 flex gap-3 [&>*]:transition-all">
-      {currentPage > 0 && (
-        <Button onClick={() => onMenuLists('left', false)} type="secondary">
-          <HiMiniChevronLeft />
-        </Button>
-      )}
-
+    <div className="mt-auto flex gap-3 self-center [&>*]:transition-all">
+      <Button onClick={() => onMenuLists('left', false)} type="secondary">
+        <HiMiniChevronLeft />
+      </Button>
       {!isLoading &&
         new Array(pages).fill('')?.map((_, i) => (
           <Button
@@ -28,11 +25,9 @@ function MenuPages({
           </Button>
         ))}
 
-      {currentPage < pages - 1 && (
-        <Button onClick={() => onMenuLists('right', false)} type="secondary">
-          <HiMiniChevronRight />
-        </Button>
-      )}
+      <Button onClick={() => onMenuLists('right', false)} type="secondary">
+        <HiMiniChevronRight />
+      </Button>
     </div>
   );
 }

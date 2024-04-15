@@ -6,7 +6,7 @@ function SortBy({ id, options, type, className = '' }) {
 
   const defaultStyles = {
     primary:
-      'rounded-md border-2 border-amber-200 uppercase focus:border-amber-300 focus:outline-none',
+      'rounded-md border-2 border-amber-200 capitalize focus:border-amber-300 focus:outline-none',
   };
 
   function handleChange(e) {
