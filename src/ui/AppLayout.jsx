@@ -6,7 +6,7 @@ function AppLayout() {
   return (
     <div className="flex h-[100vh] flex-col">
       <Header />
-      <main className="h-full bg-stone-50">
+      <main className="h-full">
         <Outlet />
       </main>
       {/* <Footer /> */}

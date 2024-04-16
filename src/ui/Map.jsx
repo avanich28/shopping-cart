@@ -4,7 +4,7 @@ function Map() {
   return (
     <MapContainer
       center={[13.736717, 100.523186]}
-      zoom={6}
+      zoom={10}
       scrollWheelZoom={false}
       style={{ height: '100%' }}
     >
@@ -13,9 +13,7 @@ function Map() {
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
       <Marker position={[13.736717, 100.523186]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+        <Popup>Pizzaria Restaurant</Popup>
       </Marker>
     </MapContainer>
   );

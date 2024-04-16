@@ -49,7 +49,7 @@ function HomeContent() {
                 key={currentPage}
                 className={`${
                   side === 'left' ? 'animate-slideL' : 'animate-slideR'
-                } flex w-[640px] justify-between`}
+                } flex`}
               >
                 {currentMenuLists?.map((pizza) => (
                   <MenuItem

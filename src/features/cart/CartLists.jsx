@@ -22,7 +22,7 @@ function CartLists() {
   }
 
   return (
-    <div className="max-h-screen overflow-y-scroll px-4 py-10">
+    <div className="px-4 py-10">
       <header className="mb-3 flex items-center justify-between gap-2">
         <Heading type="primary">My Cart</Heading>
         <DetailBox type="primary" bgColor="bg-stone-400" className="ml-auto">

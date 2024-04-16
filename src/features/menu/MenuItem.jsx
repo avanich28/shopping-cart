@@ -8,7 +8,7 @@ function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
 
   const defaultStyles = {
     primary:
-      'flex w-48 flex-col items-center border-2 border-amber-100 p-2 text-[14px] tracking-wider transition-all hover:border-amber-300 cursor-auto',
+      'flex w-48 flex-col items-center p-2 text-[14px] tracking-wider transition-all cursor-auto',
     secondary:
       'flex gap-4 overflow-hidden transition-all hover:bg-stone-200 animate-slideD opacity-0 w-full',
   };
