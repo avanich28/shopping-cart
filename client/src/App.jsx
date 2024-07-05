@@ -15,8 +15,10 @@ import Cart from './pages/Cart';
 import OrderForm from './features/order/OrderForm';
 import LogIn from './features/authentication/LogIn';
 import ForgetPassword from './features/authentication/ForgetPassword';
-import User from './features/authentication/User';
 import ResetPassword from './features/authentication/ResetPassword';
+import Me from './features/user/Me';
+import Delivery from './features/user/Delivery';
+import Setting from './features/user/Setting';
 
 const queryClient = new QueryClient();
 
@@ -50,20 +52,34 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: '/sign-up',
+        path: '/users/sign-up',
         element: <SignUp />,
       },
       {
-        path: '/log-in',
+        path: '/users/log-in',
         element: <LogIn />,
       },
       {
-        path: '/forget-password',
+        path: '/users/forget-password',
         element: <ForgetPassword />,
       },
       {
-        path: '/user',
-        element: <User />,
+        path: '/users/reset-password/:token',
+        element: <ResetPassword />,
+      },
+      {
+        path: '/users/me',
+        element: <Me />,
+        children: [
+          {
+            path: '/users/me',
+            element: <Delivery />,
+          },
+          {
+            path: '/users/me/setting',
+            element: <Setting />,
+          },
+        ],
       },
     ],
   },

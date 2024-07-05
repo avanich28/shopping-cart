@@ -83,7 +83,7 @@ function SignUp() {
         msg="Have already an account?"
         hasLabel={false}
       >
-        <Hyperlink type="auth" href="/log-in">
+        <Hyperlink type="auth" href="/users/log-in">
           Log In
         </Hyperlink>
       </FormRow>

@@ -5,5 +5,5 @@ export async function getMenus() {
 
   const data = await res.json();
 
-  return data.data;
+  return data.data; // []
 }

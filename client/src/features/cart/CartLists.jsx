@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, getCart } from './cartSlice';
+import { clearCart, getCart, getTotalItems, getTotalPrices } from './cartSlice';
 import { formatCurrency } from '../../utils/helpers';
 import { useNavigate } from 'react-router-dom';
 import Heading from '../../ui/Heading';
@@ -13,10 +13,9 @@ function CartLists() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const carts = useSelector(getCart);
-  const totalItems = carts.reduce((acc, cur) => acc + cur.quantity, 0);
-  const totalPrices = carts.reduce((acc, cur) => acc + cur.totalPrice, 0);
+  const totalItems = useSelector(getTotalItems);
+  const totalPrices = useSelector(getTotalPrices);
 
-  // TODO
   function handleCreateOrder() {
     navigate('/order');
   }

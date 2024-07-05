@@ -9,7 +9,7 @@ function MenuPages({
   onClickPage,
 }) {
   return (
-    <div className="mt-auto flex gap-3 self-center [&>*]:transition-all">
+    <div className="mt-auto flex gap-3 self-center pb-4 [&>*]:transition-all">
       <Button onClick={() => onMenuLists('left', false)} type="secondary">
         <HiMiniChevronLeft />
       </Button>

@@ -40,7 +40,7 @@ function LogIn() {
       </Button>
 
       <FormRow getStyle="tertiary" hasLabel={false}>
-        <Hyperlink type="auth" href="/forget-password">
+        <Hyperlink type="auth" href="/users/forget-password">
           Forget your password?
         </Hyperlink>
       </FormRow>
@@ -50,7 +50,7 @@ function LogIn() {
         msg="Don't have an account?"
         hasLabel={false}
       >
-        <Hyperlink type="auth" href="/sign-up">
+        <Hyperlink type="auth" href="/users/sign-up">
           Sign Up
         </Hyperlink>
       </FormRow>

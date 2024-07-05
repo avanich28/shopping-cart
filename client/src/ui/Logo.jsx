@@ -5,7 +5,7 @@ function Logo() {
   return (
     <LinkButton to="/" type="logo">
       <div className="font-emoji text-4xl">🍕</div>
-      <Heading type="logo">Pizzaria</Heading>
+      <Heading type="logo">Pizzeria</Heading>
     </LinkButton>
   );
 }
