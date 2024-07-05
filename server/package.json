@@ -2,11 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "build": "parcel build ./server.js --dist-dir ./dist"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +26,8 @@
     "nodemailer-brevo-transport": "^2.1.0",
     "nodemon": "^3.1.0",
     "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
   }
 }
