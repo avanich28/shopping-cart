@@ -119,14 +119,13 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
-  if (req.body.token) {
+  if (req.headers.cookie) {
     const decoded = await promisify(jwt.verify)(
-      req.body.token,
+      req.headers.cookie.slice(4),
       process.env.JWT_SECRET
     );
 
     const currentUser = await User.findById({ _id: decoded.id });
-
     if (!currentUser)
       res.status(200).json({
         status: "success",
