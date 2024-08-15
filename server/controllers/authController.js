@@ -14,6 +14,7 @@ const signToken = (id) =>
 const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
+  // NOTE
   res.cookie("jwt", token, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -117,28 +118,29 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-// BUG show in view
-exports.isLoggedIn = async (req, res, next) => {
-  if (req.cookies.jwt) {
-    try {
-      const decoded = await promisify(jwt.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET
-      );
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.body.token) {
+    const decoded = await promisify(jwt.verify)(
+      req.body.token,
+      process.env.JWT_SECRET
+    );
 
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) next();
+    const currentUser = await User.findById({ _id: decoded.id });
 
-      if (currentUser.changedPasswordAfter(decoded.iat)) return next();
+    if (!currentUser)
+      res.status(200).json({
+        status: "success",
+        data: {},
+      });
 
-      res.locals.user = currentUser;
-      return next();
-    } catch (err) {
-      return next();
-    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: currentUser,
+      },
+    });
   }
-  next();
-};
+});
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
