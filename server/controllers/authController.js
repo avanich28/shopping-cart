@@ -119,9 +119,9 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
-  if (req.headers.cookie) {
+  if (req.params.token) {
     const decoded = await promisify(jwt.verify)(
-      req.headers.cookie.slice(4),
+      req.params.token,
       process.env.JWT_SECRET
     );
 
