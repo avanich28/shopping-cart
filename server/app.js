@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.json("Hello");
 });
 
-if (process.env.NODE_ENV === "production") app.use(morgan("dev"));
+if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 app.use(express.json({ limit: "10kb" }));
 app.use(cors());

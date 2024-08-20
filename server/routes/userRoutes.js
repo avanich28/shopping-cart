@@ -23,9 +23,8 @@ router
 
 router.patch("/update-my-password", authController.updatePassword);
 
-router
-  .route("/delivery")
-  .get(userController.getAllDeliveries)
-  .post(userController.addDelivery);
+router.get("/delivery", userController.getAllDeliveries);
+
+router.post("/delivery/:token", userController.addDelivery);
 
 module.exports = router;

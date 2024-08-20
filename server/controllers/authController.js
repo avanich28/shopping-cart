@@ -84,8 +84,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
-  } else if (req.cookies.jwt) {
-    token = req.cookies.jwt;
+  } else if (req.params.token) {
+    token = req.params.token;
   }
 
   if (!token)
@@ -139,6 +139,11 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
       },
     });
   }
+
+  res.status(200).json({
+    status: "success",
+    data: {},
+  });
 });
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
