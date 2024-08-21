@@ -33,6 +33,7 @@ exports.getAllDeliveries = catchAsync(async (req, res, next) => {
 });
 
 exports.addDelivery = catchAsync(async (req, res, next) => {
+  console.log(req.user.id);
   const data = await Delivery.create({ user: req.user.id, ...req.body });
 
   console.log(data);

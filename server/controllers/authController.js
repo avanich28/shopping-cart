@@ -78,15 +78,7 @@ exports.logout = (req, res) => {
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
 
-  // postman
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
-  } else if (req.params.token) {
-    token = req.params.token;
-  }
+  if (req.params.token) token = req.params.token;
 
   if (!token)
     return next(
