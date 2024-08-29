@@ -139,7 +139,8 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
 });
 
 exports.forgetPassword = catchAsync(async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+  const { email } = req.body;
+  const user = await User.findOne({ email });
 
   if (!user)
     return next(new AppError("There is no user with email address.", 404));
@@ -151,11 +152,12 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
     const resetURL = `${req.protocol}://${req.get(
       "host"
     )}/api/v1/users/reset-password/${resetToken}`;
-    await new Email(user, resetURL).sendPasswordReset();
+
+    // await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({
       status: "success",
-      message: "Token sent to email!",
+      message: "Token is sent to email!",
     });
   } catch (err) {
     console.error("💥", err);

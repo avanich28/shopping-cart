@@ -25,10 +25,6 @@ const deliverySchema = new mongoose.Schema({
       quantity: Number,
     },
   ],
-  // cart: {
-  //   type: Array,
-  //   required: [true, "Please add items in the cart!"],
-  // },
 });
 
 const Delivery = mongoose.model("Delivery", deliverySchema);
