@@ -4,17 +4,20 @@ import Heading from '../../ui/Heading';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
+import { useForgetPassword } from './useForgetPassword';
 
 function ForgetPassword() {
   const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const { forgetPassword } = useForgetPassword();
 
   function onSubmit(data) {
-    console.log(data);
+    const { email } = data;
+    forgetPassword({ email });
   }
 
   return (
-    <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Heading type="primary">Forget password</Heading>
       <FormRow label="email address" error={errors?.email?.message}>
         <Input

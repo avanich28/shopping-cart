@@ -14,7 +14,7 @@ function ContactUsContent() {
       <div className="h-[75vh] w-[40vw] animate-slideL">
         <Map />
       </div>
-      <div className="flex animate-slideD flex-col gap-5">
+      <div className="flex animate-slideD flex-col gap-5 dark:text-white">
         <Heading type="primary">Contact us</Heading>
         <div className="flex flex-col gap-4">
           <div>

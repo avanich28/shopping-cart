@@ -1,13 +1,12 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
+import { MdDeliveryDining } from 'react-icons/md';
 
 import slicePizza from '../../assets/images/home/slice-pizza.jpg';
 import pizzaOven from '../../assets/images/home/pizza-oven.jpg';
 import eatPizza from '../../assets/images/home/eat-pizza.jpg';
-import fastDelivery from '../../assets/images/home/fast-delivery.png';
 
 import { useMenuLists } from '../menu/useMenuLists';
 
-import ImageBox from '../../ui/ImageBox';
 import LinkButton from '../../ui/LinkButton';
 import MenuItem from '../menu/MenuItem';
 import Spinner from '../../ui/Spinner';
@@ -82,7 +81,7 @@ function HomeContent() {
         ></div>
 
         <div className="flex justify-center text-center">
-          <p className="vertical-text text-xl font-semibold [&>span]:text-3xl [&>span]:font-bold [&>span]:text-red-700">
+          <p className="vertical-text text-xl font-semibold dark:text-white [&>span]:text-3xl [&>span]:font-bold [&>span]:text-red-700">
             <span>M</span>ade Fresh Every Day with <span>F</span>resh{' '}
             Ingredients
           </p>
@@ -94,15 +93,12 @@ function HomeContent() {
         ></div>
       </section>
 
-      <section className="flex h-96 justify-between align-middle [&>div]:flex-1">
+      <section className="flex h-96 justify-between align-middle dark:text-white [&>div]:flex-1">
         <div className="flex flex-col items-center justify-center">
-          <ImageBox
-            src={fastDelivery}
-            alt="Fast
-            Delivery"
-            className="h-24 w-24"
-          />
           <p className="flex flex-col items-center text-xl font-bold tracking-widest">
+            <span className="text-5xl">
+              <MdDeliveryDining />
+            </span>
             <span>Delivery</span>
             <span>or</span>
             <span>Pick Up</span>

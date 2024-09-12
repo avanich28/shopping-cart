@@ -4,18 +4,25 @@ import Form from '../../ui/Form';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
 import FormRow from '../../ui/FormRow';
-import Hyperlink from '../../ui/Hyperlink';
+import { useLogin } from './useLogIn';
+import LinkButton from '../../ui/LinkButton';
 
 function LogIn() {
   const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const { login, isLoading } = useLogin();
 
   function onSubmit(data) {
-    console.log(data);
+    console.log('login');
+    const { email, password } = data;
+
+    if (!email || !password) return;
+
+    login({ email, password });
   }
 
   return (
-    <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Heading type="primary">Log in</Heading>
       <FormRow label="email address" error={errors?.email?.message}>
         <Input
@@ -35,14 +42,19 @@ function LogIn() {
         />
       </FormRow>
 
-      <Button type="primary" onClick={reset}>
+      <Button
+        type="primary"
+        btnType="submit"
+        onClick={reset}
+        disabled={isLoading}
+      >
         Log in
       </Button>
 
       <FormRow getStyle="tertiary" hasLabel={false}>
-        <Hyperlink type="auth" href="/users/forget-password">
+        <LinkButton type="link2" to="/users/forget-password">
           Forget your password?
-        </Hyperlink>
+        </LinkButton>
       </FormRow>
 
       <FormRow
@@ -50,9 +62,9 @@ function LogIn() {
         msg="Don't have an account?"
         hasLabel={false}
       >
-        <Hyperlink type="auth" href="/users/sign-up">
+        <LinkButton to="/users/sign-up" type="link2">
           Sign Up
-        </Hyperlink>
+        </LinkButton>
       </FormRow>
     </Form>
   );

@@ -10,12 +10,12 @@ function MenuItem({ pizza, detail = true, type, onClick, imgGrey = false }) {
     primary:
       'flex w-48 flex-col items-center p-2 text-[14px] tracking-wider transition-all cursor-auto',
     secondary:
-      'flex gap-4 overflow-hidden transition-all hover:bg-stone-200 animate-slideD opacity-0 w-full',
+      'flex gap-4 overflow-hidden transition-all hover:bg-stone-200 animate-slideD opacity-0 w-full dark:hover:bg-stone-950',
   };
 
   return (
     <Button
-      className={`${defaultStyles[type]} ${
+      className={`${defaultStyles[type]} dark:text-white ${
         soldOut && imgGrey
           ? 'cursor-not-allowed border-stone-300 hover:border-stone-300'
           : ''

@@ -1,24 +1,33 @@
 import { useSelector } from 'react-redux';
+import Heading from '../../ui/Heading';
+import Button from '../../ui/Button';
+import OrderItem from './OrderItem';
 import {
   getCart,
   clearCart,
   getTotalItems,
   getTotalPrices,
 } from '../cart/cartSlice';
-import Heading from '../../ui/Heading';
+import { useCreateDelivery } from './useCreateDelivery';
 import { formatCurrency } from '../../utils/helpers';
-import OrderItem from './OrderItem';
-import { DELIVERY_CHARGE } from '../../utils/constants';
-import Button from '../../ui/Button';
+import { DELIVERY_CHARGE, calcTax } from '../../utils/constants';
 
 function OrderForm() {
+  const { createDelivery } = useCreateDelivery();
   const carts = useSelector(getCart);
   const totalItems = useSelector(getTotalItems);
-  const totalPrices = useSelector(getTotalPrices);
-  const tax = totalPrices * 0.07;
+  const totalPrice = useSelector(getTotalPrices);
+  const tax = calcTax(totalPrice);
 
   function onSubmit() {
-    console.log('yeah');
+    const order = {
+      tax,
+      totalPrice,
+      cart: carts,
+      totalItems,
+    };
+
+    createDelivery(order);
     clearCart();
   }
 
@@ -51,7 +60,7 @@ function OrderForm() {
           <span>Total</span>
           <span></span>
           <span>{totalItems}</span>
-          <span>{formatCurrency(totalPrices + DELIVERY_CHARGE + tax)}</span>
+          <span>{formatCurrency(totalPrice + DELIVERY_CHARGE + tax)}</span>
         </div>
       </div>
       <Button type="primary" className="mt-2" onClick={onSubmit}>

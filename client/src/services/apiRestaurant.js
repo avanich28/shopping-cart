@@ -1,9 +1,64 @@
+import Cookies from 'js-cookie';
+
 export async function getMenus() {
-  const res = await fetch('https://react-fast-pizza-api.onrender.com/api/menu');
+  try {
+    const res = await fetch(
+      'https://shopping-cart-pizzaria.vercel.app/api/v1/menu',
+    );
 
-  if (!res.ok) throw new Error('Failed to get pizza menus');
+    if (!res.ok) throw new Error('Failed to get pizza menus');
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data.data; // []
+    return data.data; // []
+  } catch (error) {
+    console.error(error); // TODO
+  }
+}
+
+export async function createDelivery(order) {
+  try {
+    const token = Cookies.get('token');
+    if (!token) return ''; // TODO
+    console.log(token);
+
+    const res = await fetch(
+      `https://shopping-cart-pizzaria.vercel.app/api/v1/users/delivery/${token}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      },
+    );
+
+    if (!res.ok) throw new Error('Failed to create order');
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error); // TODO
+  }
+}
+
+export async function getAllDeliveries() {
+  try {
+    const token = Cookies.get('token');
+    if (!token) return {}; // TODO
+    console.log(token);
+
+    const res = await fetch(
+      `https://shopping-cart-pizzaria.vercel.app/api/v1/users/delivery/${token}`,
+    );
+
+    if (!res.ok) throw new Error('Failed to get deliveries');
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error(error); // TODO
+  }
 }

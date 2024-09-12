@@ -1,9 +1,10 @@
 import Profile from './Profile';
 import Password from './Password';
+import LinkButton from '../../ui/LinkButton';
 
 function Setting() {
   return (
-    <div className="flex flex-col gap-5 pt-[10vh]">
+    <div className="mb-[10vh] mt-[10vh] flex flex-col gap-4">
       <Profile />
       <Password />
     </div>

@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -19,13 +23,24 @@ import ResetPassword from './features/authentication/ResetPassword';
 import Me from './features/user/Me';
 import Delivery from './features/user/Delivery';
 import Setting from './features/user/Setting';
+import ProtectedRoute from './ui/ProtectedRoute';
+import Cookies from 'js-cookie';
+import store from './store';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const queryClient = new QueryClient();
+
+const token = Cookies.get('token');
+const totalItems = store.getState().cart.cart.length;
+
+// const getAccessToken = () => token && totalItems > 0;
+const getAccessToken = () => token;
+const isAuthenticated = () => getAccessToken();
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    // errorElement: <ErrorFallBack />,
+    errorElement: <ErrorFallBack />,
     children: [
       {
         path: '/',
@@ -40,10 +55,6 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: '/order',
-        element: <OrderForm />,
-      },
-      {
         path: '/about-us',
         element: <AboutUs />,
       },
@@ -51,33 +62,59 @@ const router = createBrowserRouter([
         path: '/contact',
         element: <Contact />,
       },
+      // {
+      //   path: '/setting',
+      //   element: <Setting />,
+      // },
+      // {
+      //   path: '/delivery',
+      //   element: <Delivery />,
+      // },
       {
-        path: '/users/sign-up',
-        element: <SignUp />,
-      },
-      {
-        path: '/users/log-in',
-        element: <LogIn />,
-      },
-      {
-        path: '/users/forget-password',
-        element: <ForgetPassword />,
-      },
-      {
-        path: '/users/reset-password/:token',
-        element: <ResetPassword />,
-      },
-      {
-        path: '/users/me',
-        element: <Me />,
+        element: <ProtectedRoute isAuthenticated={!token} />,
         children: [
           {
-            path: '/users/me',
-            element: <Delivery />,
+            path: '/users/sign-up',
+            element: <SignUp />,
           },
           {
-            path: '/users/me/setting',
-            element: <Setting />,
+            path: '/users/log-in',
+            element: <LogIn />,
+          },
+          {
+            path: '/users/forget-password',
+            element: <ForgetPassword />,
+          },
+          {
+            path: '/users/reset-password/:token',
+            element: <ResetPassword />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedRoute isAuthenticated={isAuthenticated()} />,
+        children: [
+          {
+            path: '/order',
+            element: <OrderForm />,
+          },
+          {
+            path: '/users/me',
+            element: <Me />,
+            children: [
+              {
+                index: true,
+                element: <Navigate to="/users/me/delivery" replace />,
+              },
+              {
+                path: '/users/me/delivery',
+                element: <Delivery />,
+              },
+              {
+                path: '/users/me/setting',
+                element: <Setting />,
+              },
+            ],
           },
         ],
       },
@@ -89,9 +126,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <SearchProvider>
-        <RouterProvider router={router} />
-      </SearchProvider>
+      <ThemeProvider>
+        <SearchProvider>
+          <RouterProvider router={router} />
+        </SearchProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

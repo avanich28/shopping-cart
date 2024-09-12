@@ -7,7 +7,7 @@ function AboutUsContent() {
     <div className="flex h-full [&>div]:flex-1">
       <div className="flex animate-slideD flex-col justify-center gap-5 px-5">
         <Heading type="primary">About us</Heading>
-        <p>
+        <p className="dark:text-white">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
           architecto error minus nihil quod asperiores et, sint, doloremque
           nisi, accusamus assumenda velit pariatur laboriosam dicta atque

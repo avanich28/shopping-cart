@@ -6,8 +6,8 @@ import LinkButton from '../../ui/LinkButton';
 function Me() {
   return (
     <div className="flex h-full">
-      <aside className="flex flex-col gap-5 bg-amber-100 px-3 py-6 [&_svg]:text-xl">
-        <LinkButton type="nav2">
+      <aside className="ml-2 flex flex-col gap-4 self-center rounded-3xl bg-amber-300 px-3 py-6 [&_svg]:text-xl">
+        <LinkButton to="delivery" type="nav2">
           <MdDeliveryDining />
         </LinkButton>
 
@@ -15,7 +15,7 @@ function Me() {
           <IoMdSettings />
         </LinkButton>
       </aside>
-      <section className="w-full">
+      <section className="h-full w-full">
         <Outlet />
       </section>
     </div>

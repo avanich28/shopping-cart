@@ -5,7 +5,7 @@ function MenuListsOperation({ sortData, totalItems }) {
   const { updateQuery } = useSearch();
 
   return (
-    <div className="ml-auto flex items-center gap-2 text-sm">
+    <div className="ml-auto flex items-center gap-2 text-sm dark:text-white">
       <p>
         {updateQuery
           ? `Showing results for: ${updateQuery} (${sortData?.length} items)`

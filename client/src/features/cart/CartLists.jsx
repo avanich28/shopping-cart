@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
 import { clearCart, getCart, getTotalItems, getTotalPrices } from './cartSlice';
 import { formatCurrency } from '../../utils/helpers';
-import { useNavigate } from 'react-router-dom';
-import Heading from '../../ui/Heading';
 import CartItem from './CartItem';
+import EmptyCart from './EmptyCart';
+import Heading from '../../ui/Heading';
 import Button from '../../ui/Button';
 import LinkButton from '../../ui/LinkButton';
-import EmptyCart from './EmptyCart';
 import DetailBox from '../../ui/DetailBox';
 
 function CartLists() {
@@ -17,7 +19,9 @@ function CartLists() {
   const totalPrices = useSelector(getTotalPrices);
 
   function handleCreateOrder() {
-    navigate('/order');
+    const token = Cookies.get('token') || '';
+    if (token) navigate('/order');
+    else toast.error('Please log in first!');
   }
 
   return (
@@ -32,7 +36,7 @@ function CartLists() {
         </DetailBox>
       </header>
 
-      <ul className="divide-y divide-stone-300">
+      <ul className="divide-y divide-stone-300 dark:text-white">
         {carts.length ? (
           carts.map((cart) => <CartItem cart={cart} key={cart.name} />)
         ) : (

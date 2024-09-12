@@ -4,25 +4,27 @@ import Form from '../../ui/Form';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
 import FormRow from '../../ui/FormRow';
-import Hyperlink from '../../ui/Hyperlink';
+import { useSignUp } from './useSignUp';
+import LinkButton from '../../ui/LinkButton';
 
 function SignUp() {
+  const { signup } = useSignUp();
   const { formState, getValues, reset, register, handleSubmit } = useForm();
   const { errors } = formState;
 
-  console.log(errors);
-
   function onSubmit(data) {
-    console.log(data);
+    signup(data, {
+      onSettled: reset,
+    });
   }
 
   return (
-    <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Heading type="primary">Sign up</Heading>
       <FormRow label="full name" error={errors?.fullName?.message}>
         <Input
           type="text"
-          id="fullName"
+          id="name"
           register={register}
           data={{ required: 'This field is required' }}
         />
@@ -74,18 +76,16 @@ function SignUp() {
         />
       </FormRow>
 
-      <Button type="primary" onClick={reset}>
-        Sign up
-      </Button>
+      <Button type="primary">Sign up</Button>
 
       <FormRow
         getStyle="tertiary"
         msg="Have already an account?"
         hasLabel={false}
       >
-        <Hyperlink type="auth" href="/users/log-in">
+        <LinkButton type="link2" to="/users/log-in">
           Log In
-        </Hyperlink>
+        </LinkButton>
       </FormRow>
     </Form>
   );

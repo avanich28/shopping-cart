@@ -33,7 +33,9 @@ function CartItem({ cart }) {
     <li className="flex flex-wrap items-center justify-between">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-3">
-          <span className="w-[45px] text-lg text-stone-700">x {quantity}</span>
+          <span className="w-[45px] text-lg text-stone-700 dark:text-stone-400">
+            x {quantity}
+          </span>
           <ImageBox
             src={imageUrl}
             alt={name}

@@ -18,6 +18,10 @@ const deliverySchema = new mongoose.Schema({
     type: Number,
     required: [true, "Order must have total price."],
   },
+  totalItems: {
+    type: Number,
+    required: [true, "Order must have total items."],
+  },
   cart: [
     {
       name: String,
