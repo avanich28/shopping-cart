@@ -15,12 +15,12 @@ router.post("/forget-password", authController.forgetPassword);
 router.patch("/reset-password/:token", authController.resetPassword);
 
 router
-  .route("/me")
+  .route("/me/:token")
   .get(authController.protect, userController.getProfile)
   .patch(authController.protect, userController.updateProfile);
 
 router.patch(
-  "/update-my-password",
+  "/update-my-password/:token",
   authController.protect,
   authController.updatePassword
 );
