@@ -29,6 +29,10 @@ const deliverySchema = new mongoose.Schema({
       quantity: Number,
     },
   ],
+  address: {
+    type: String,
+    required: [true, "Order must have an address."],
+  },
 });
 
 const Delivery = mongoose.model("Delivery", deliverySchema);

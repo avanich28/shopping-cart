@@ -198,8 +198,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 201, req, res);
 });
 
-exports.updateProfile = catchAsync(async () => {});
-
 exports.updatePassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
 
