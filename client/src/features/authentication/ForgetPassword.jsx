@@ -9,11 +9,16 @@ import { useForgetPassword } from './useForgetPassword';
 function ForgetPassword() {
   const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
-  const { forgetPassword } = useForgetPassword();
+  const { forgetPassword, isLoading } = useForgetPassword();
 
   function onSubmit(data) {
     const { email } = data;
-    forgetPassword({ email });
+    forgetPassword(
+      { email },
+      {
+        onSettled: reset,
+      },
+    );
   }
 
   return (
@@ -28,7 +33,7 @@ function ForgetPassword() {
         />
       </FormRow>
 
-      <Button type="primary" onClick={reset}>
+      <Button type="primary" disabled={isLoading}>
         Submit
       </Button>
     </Form>

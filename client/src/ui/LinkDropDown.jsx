@@ -3,21 +3,18 @@ import Button from './Button';
 import { useState } from 'react';
 import { links } from '../utils/links';
 import LinkButton from './LinkButton';
-import { useOutsideClick } from '../hooks/useOutsideClick';
 
 function LinkDropDown() {
   const [isOpen, setIsOpen] = useState(false);
-  const { ref } = useOutsideClick(() => setIsOpen(false));
 
   function toggleLinkDropDown() {
     console.log('hello');
     setIsOpen((is) => !is);
   }
-  // console.log(isOpen);
 
   return (
     <>
-      <div ref={ref} className="flex lg:hidden">
+      <div className="flex lg:hidden">
         <Button
           btnType="button"
           onClick={toggleLinkDropDown}

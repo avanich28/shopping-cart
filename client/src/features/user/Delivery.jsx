@@ -9,12 +9,12 @@ function Delivery() {
     <table className="mx-5 my-5 w-full gap-5 divide-y divide-slate-200 text-center dark:text-white">
       <tr className="[&>th]:pb-2">
         <th>Address</th>
-        <th>Products</th>
+        <th>Amount</th>
         <th>Cost</th>
         <th>Date</th>
       </tr>
       {data?.data.map((order, i) => (
-        <DeliveryItem key={i} order={order} index={i} />
+        <DeliveryItem key={i} order={order} />
       ))}
     </table>
   );

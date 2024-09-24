@@ -1,6 +1,5 @@
 import Profile from './Profile';
 import Password from './Password';
-import LinkButton from '../../ui/LinkButton';
 
 function Setting() {
   return (

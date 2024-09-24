@@ -3,22 +3,32 @@ import Form from '../../ui/Form';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
 import FormRow from '../../ui/FormRow';
+import Button from '../../ui/Button';
+import { useUpdateProfile } from './useUpdateProfile';
 
 function Profile() {
-  const { register, formState, handleSubmit, reset, getValues } = useForm();
+  const { updateProfile, isLoading } = useUpdateProfile();
+  const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
   function onSubmit(data) {
-    console.log(data);
+    const { name, email } = data;
+
+    updateProfile(
+      { name, email },
+      {
+        onSettled: reset,
+      },
+    );
   }
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Heading type="primary">Profile</Heading>
       <FormRow label="full name" error={errors?.fullName?.message}>
         <Input
           type="text"
-          id="fullName"
+          id="name"
           register={register}
           data={{ required: 'This field is required' }}
         />
@@ -38,6 +48,10 @@ function Profile() {
           }}
         />
       </FormRow>
+
+      <Button type="primary" btnType="submit" disabled={isLoading}>
+        UPDATE
+      </Button>
     </Form>
   );
 }

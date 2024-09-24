@@ -5,16 +5,20 @@ import {
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Cookies from 'js-cookie';
+import store from './store';
+
+import { SearchProvider } from './contexts/searchContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 import AppLayout from './ui/AppLayout';
 import Error from './ui/Error';
+import ProtectedRoute from './ui/ProtectedRoute';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import SignUp from './features/authentication/SignUp';
-import ErrorFallBack from './ui/ErrorFallBack';
-import { SearchProvider } from './contexts/searchContext';
 import Cart from './pages/Cart';
 import OrderForm from './features/order/OrderForm';
 import LogIn from './features/authentication/LogIn';
@@ -23,24 +27,21 @@ import ResetPassword from './features/authentication/ResetPassword';
 import Me from './features/user/Me';
 import Delivery from './features/user/Delivery';
 import Setting from './features/user/Setting';
-import ProtectedRoute from './ui/ProtectedRoute';
-import Cookies from 'js-cookie';
-import store from './store';
-import { ThemeProvider } from './contexts/ThemeContext';
 
 const queryClient = new QueryClient();
 
 const token = Cookies.get('token');
-const totalItems = store.getState().cart.cart.length;
+const totalItems = store.getState().cart.cart.length > 0;
 
-// const getAccessToken = () => token && totalItems > 0;
 const getAccessToken = () => token;
+const getAccessToken2 = () => token && totalItems;
 const isAuthenticated = () => getAccessToken();
+const isAuthenticated2 = () => getAccessToken2();
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    errorElement: <ErrorFallBack />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -62,14 +63,6 @@ const router = createBrowserRouter([
         path: '/contact',
         element: <Contact />,
       },
-      // {
-      //   path: '/setting',
-      //   element: <Setting />,
-      // },
-      // {
-      //   path: '/delivery',
-      //   element: <Delivery />,
-      // },
       {
         element: <ProtectedRoute isAuthenticated={!token} />,
         children: [
@@ -92,12 +85,8 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <ProtectedRoute isAuthenticated={isAuthenticated()} />,
+        element: <ProtectedRoute isAuthenticated={() => isAuthenticated()} />,
         children: [
-          {
-            path: '/order',
-            element: <OrderForm />,
-          },
           {
             path: '/users/me',
             element: <Me />,
@@ -115,6 +104,15 @@ const router = createBrowserRouter([
                 element: <Setting />,
               },
             ],
+          },
+        ],
+      },
+      {
+        element: <ProtectedRoute isAuthenticated={() => isAuthenticated2()} />,
+        children: [
+          {
+            path: '/order',
+            element: <OrderForm />,
           },
         ],
       },

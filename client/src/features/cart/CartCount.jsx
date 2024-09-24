@@ -11,7 +11,7 @@ function CartCount() {
         <HiOutlineShoppingCart />
       </div>
       {carts.length > 0 && (
-        <span className="absolute right-[220px] top-7 flex h-4 w-4 items-center justify-center rounded-full bg-stone-900 text-xs text-stone-50 lg:right-[245px] lg:top-8">
+        <span className="absolute right-[220px] top-6 flex h-4 w-4 items-center justify-center rounded-full bg-stone-900 text-xs text-stone-50  lg:right-[245px] lg:top-8">
           {carts.length}
         </span>
       )}

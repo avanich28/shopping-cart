@@ -19,7 +19,7 @@ function HomeHeader() {
         <HiArrowLeftCircle />
       </Button>
 
-      <div className="relative flex h-[35rem] w-full flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex h-[20rem] w-full flex-col items-center justify-center overflow-hidden md:h-[29rem] lg:h-[35rem]">
         <div
           style={{ transform: `translateX(-${Number(id) * 100}%)` }}
           className={`absolute flex transition-all duration-[1000ms] ease-in-out [&>div]:h-full [&>div]:w-full`}
@@ -35,10 +35,12 @@ function HomeHeader() {
         </div>
         <div
           key={title}
-          className="z-10 w-[600px] animate-fade text-center text-stone-50 opacity-0"
+          className="z-10 w-[300px] animate-fade text-center text-stone-50 opacity-0 md:w-[600px]"
         >
           <Heading type="title">{title}</Heading>
-          <p className="text-xl font-semibold tracking-wide">{detail}</p>
+          <p className="text-base font-semibold tracking-wide md:text-xl">
+            {detail}
+          </p>
         </div>
       </div>
 

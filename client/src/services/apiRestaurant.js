@@ -12,15 +12,14 @@ export async function getMenus() {
 
     return data.data; // []
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }
 
 export async function createDelivery(order) {
   try {
     const token = Cookies.get('token');
-    if (!token) return ''; // TODO
-    console.log(token);
+    if (!token) return '';
 
     const res = await fetch(
       `https://shopping-cart-pizzaria.vercel.app/api/v1/users/delivery/${token}`,
@@ -39,15 +38,14 @@ export async function createDelivery(order) {
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }
 
 export async function getAllDeliveries() {
   try {
     const token = Cookies.get('token');
-    if (!token) return {}; // TODO
-    console.log(token);
+    if (!token) return {};
 
     const res = await fetch(
       `https://shopping-cart-pizzaria.vercel.app/api/v1/users/delivery/${token}`,
@@ -59,6 +57,6 @@ export async function getAllDeliveries() {
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }

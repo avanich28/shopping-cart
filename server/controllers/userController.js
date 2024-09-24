@@ -22,7 +22,6 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
   res.status(200).json({ status: "success", data: user });
 });
 
-// DELIVERY
 exports.getAllDeliveries = catchAsync(async (req, res, next) => {
   const filter = {};
   const data = await Delivery.find(filter);
@@ -39,12 +38,3 @@ exports.addDelivery = catchAsync(async (req, res, next) => {
   console.log(data);
   res.status(201).json({ status: "success", data });
 });
-
-// exports.getDelivery = catchAsync(async (req, res, next) => {
-//   const data = await Delivery.findOne({ user: req.user.id });
-
-//   if (!data) {
-//     return next(new AppError("Delivery data is not founded.", 401));
-//   }
-//   res.status(200).json({ status: "success", data });
-// });

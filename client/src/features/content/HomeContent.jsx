@@ -1,10 +1,6 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { MdDeliveryDining } from 'react-icons/md';
 
-import slicePizza from '../../assets/images/home/slice-pizza.jpg';
-import pizzaOven from '../../assets/images/home/pizza-oven.jpg';
-import eatPizza from '../../assets/images/home/eat-pizza.jpg';
-
 import { useMenuLists } from '../menu/useMenuLists';
 
 import LinkButton from '../../ui/LinkButton';
@@ -13,6 +9,10 @@ import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
 import Heading from '../../ui/Heading';
 import HomeHeader from './HomeHeader';
+
+import slicePizza from '../../assets/images/home/slice-pizza.jpg';
+import pizzaOven from '../../assets/images/home/pizza-oven.jpg';
+import eatPizza from '../../assets/images/home/eat-pizza.jpg';
 
 const NUM_LISTS = 3;
 
@@ -108,6 +108,7 @@ function HomeContent() {
         <div
           style={{ backgroundImage: `url(${eatPizza})` }}
           className="bg-cover bg-center"
+          loading="lazy"
         ></div>
 
         <div className="flex flex-col justify-center gap-2 tracking-widest [&>*]:px-3">

@@ -1,20 +1,30 @@
 import { useForm } from 'react-hook-form';
+
 import Form from '../../ui/Form';
 import Heading from '../../ui/Heading';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 
+import { useResetPassword } from './useResetPassword';
+
 function ResetPassword() {
   const { register, getValues, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const { resetPassword, isLoading } = useResetPassword();
 
   function onSubmit(data) {
-    console.log(data);
+    const { password, passwordConfirm } = data;
+    resetPassword(
+      { password, passwordConfirm },
+      {
+        onSettled: reset,
+      },
+    );
   }
 
   return (
-    <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Heading type="primary">Reset password</Heading>
 
       <FormRow label="password" error={errors?.password?.message}>
@@ -48,7 +58,7 @@ function ResetPassword() {
         />
       </FormRow>
 
-      <Button type="primary" onClick={reset}>
+      <Button type="primary" disabled={isLoading}>
         Reset
       </Button>
     </Form>

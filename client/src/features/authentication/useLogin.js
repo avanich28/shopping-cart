@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import { login as loginApi } from '../../services/apiAuth';
 
@@ -15,8 +14,7 @@ export function useLogin() {
       window.location.reload();
     },
     onError: (err) => {
-      console.log('ERROR', err); // TODO
-      toast.error('Provided email or password are incorrect');
+      throw Error(err.message);
     },
   });
 

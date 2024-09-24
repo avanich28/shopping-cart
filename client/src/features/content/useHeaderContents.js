@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import platePizza from '../../assets/images/home/plate-pizza.png';
 import sanMacro from '../../assets/images/home/san-macro.png';
 import happyFacePizza from '../../assets/images/home/happy-face-pizza.png';

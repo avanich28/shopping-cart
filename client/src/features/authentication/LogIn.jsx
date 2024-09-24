@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
+
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
 import FormRow from '../../ui/FormRow';
-import { useLogin } from './useLogIn';
 import LinkButton from '../../ui/LinkButton';
+
+import { useLogin } from './useLogIn';
 
 function LogIn() {
   const { register, formState, handleSubmit, reset } = useForm();
@@ -13,7 +15,6 @@ function LogIn() {
   const { login, isLoading } = useLogin();
 
   function onSubmit(data) {
-    console.log('login');
     const { email, password } = data;
 
     if (!email || !password) return;

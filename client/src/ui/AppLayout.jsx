@@ -16,7 +16,7 @@ function AppLayout() {
           },
         }}
       />
-      <div className="flex h-[100vh] flex-col bg-white dark:bg-stone-800">
+      <div className="flex h-[100vh] min-w-[675px] flex-col bg-white dark:bg-stone-800">
         <Header />
         <main className="h-full overflow-x-hidden">
           <Outlet />

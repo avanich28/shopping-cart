@@ -19,7 +19,7 @@ export async function login(user) {
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }
 
@@ -38,7 +38,7 @@ export async function getCurrentUser() {
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }
 
@@ -61,7 +61,7 @@ export async function signup(user) {
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
   }
 }
 
@@ -78,12 +78,87 @@ export async function forgetPassword(email) {
       },
     );
 
+    if (!res.ok) throw new Error('Failed to send an email!');
+
+    const data = res.json();
+
+    return data;
+  } catch (error) {
+    throw Error(error);
+  }
+}
+
+export async function resetPassword(resetPassword, resetToken) {
+  try {
+    const res = await fetch(
+      `https://shopping-cart-pizzaria.vercel.app/api/v1/users/reset-password/${resetToken}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(resetPassword),
+      },
+    );
+
+    if (!res.ok) throw new Error('Failed to send a reset password!');
+
+    const data = res.json();
+
+    return data;
+  } catch (error) {
+    throw Error(error);
+  }
+}
+
+export async function updateProfile(user) {
+  const token = Cookies.get('token');
+  if (!token) return '';
+
+  try {
+    const res = await fetch(
+      `https://shopping-cart-pizzaria.vercel.app/api/v1/users/me/${token}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      },
+    );
+
     if (!res.ok) throw new Error('Failed to send email!');
 
     const data = res.json();
 
     return data;
   } catch (error) {
-    console.error(error); // TODO
+    throw Error(error);
+  }
+}
+
+export async function updatePassword(pwd) {
+  const token = Cookies.get('token');
+  if (!token) return '';
+
+  try {
+    const res = await fetch(
+      `https://shopping-cart-pizzaria.vercel.app/api/v1/users/update-my-password/${token}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pwd),
+      },
+    );
+
+    if (!res.ok) throw new Error('Failed to send new password!');
+
+    const data = res.json();
+
+    return data;
+  } catch (error) {
+    throw Error(error);
   }
 }

@@ -1,12 +1,14 @@
-function DeliveryItem({ index, order }) {
-  const { cart, totalPrice, createdAt } = order;
+import { formatCurrency } from '../../utils/helpers';
+
+function DeliveryItem({ order }) {
+  const { address, totalPrice, totalItems, createdAt } = order;
 
   return (
-    <tr className={index === 0 ? '[&>td]:py-2' : ''}>
-      <td>Teparak, Samutprakarn</td>
-      <td>10</td>
-      <td>$200</td>
-      <td>Tue Jul 02 2024</td>
+    <tr>
+      <td>{address}</td>
+      <td>{totalItems}</td>
+      <td>{formatCurrency(totalPrice)}</td>
+      <td>{new Date(createdAt).toLocaleDateString('en-US')}</td>
     </tr>
   );
 }

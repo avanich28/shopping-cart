@@ -1,18 +1,17 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { DELIVERY_CHARGE, calcTax } from '../../utils/constants';
+import { getCart, getTotalItems, getTotalPrices } from '../cart/cartSlice';
+
 import Heading from '../../ui/Heading';
 import Button from '../../ui/Button';
 import OrderItem from './OrderItem';
-import {
-  getCart,
-  clearCart,
-  getTotalItems,
-  getTotalPrices,
-} from '../cart/cartSlice';
+
 import { useCreateDelivery } from './useCreateDelivery';
 import { formatCurrency } from '../../utils/helpers';
-import { DELIVERY_CHARGE, calcTax } from '../../utils/constants';
 
 function OrderForm() {
+  const [address, setAddress] = useState('');
   const { createDelivery } = useCreateDelivery();
   const carts = useSelector(getCart);
   const totalItems = useSelector(getTotalItems);
@@ -20,19 +19,28 @@ function OrderForm() {
   const tax = calcTax(totalPrice);
 
   function onSubmit() {
+    if (!address) return alert('Please fill in your address!');
+
     const order = {
       tax,
       totalPrice,
       cart: carts,
       totalItems,
+      address,
     };
 
     createDelivery(order);
-    clearCart();
   }
 
   return (
-    <div className="flex flex-col gap-4 p-5">
+    <div className="flex flex-col gap-4 p-5 dark:text-white">
+      <Heading type="primary">Address</Heading>
+      <textarea
+        className="rounded-md border border-amber-400 p-2 dark:bg-stone-900"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+      ></textarea>
+
       <Heading type="primary">Receipt</Heading>
       <div className="flex border-b-2 border-stone-800 [&>*]:w-[250px]">
         <Heading type="secondary">Menu</Heading>

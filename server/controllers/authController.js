@@ -14,7 +14,6 @@ const signToken = (id) =>
 const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
-  // NOTE
   res.cookie("jwt", token, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -74,7 +73,6 @@ exports.logout = (req, res) => {
   res.status(200).json({ status: "success" });
 };
 
-// TODO jwt
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
 
@@ -104,8 +102,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // IMPT
   req.user = currentUser;
-  // BUG
-  res.locals.user = currentUser;
+
+  // res.locals.user = currentUser;
 
   next();
 });
