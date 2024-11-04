@@ -51,12 +51,12 @@ function LogIn() {
       >
         Log in
       </Button>
-
+      {/* 
       <FormRow getStyle="tertiary" hasLabel={false}>
         <LinkButton type="link2" to="/users/forget-password">
           Forget your password?
         </LinkButton>
-      </FormRow>
+      </FormRow> */}
 
       <FormRow
         getStyle="tertiary"

@@ -22,8 +22,8 @@ import SignUp from './features/authentication/SignUp';
 import Cart from './pages/Cart';
 import OrderForm from './features/order/OrderForm';
 import LogIn from './features/authentication/LogIn';
-import ForgetPassword from './features/authentication/ForgetPassword';
-import ResetPassword from './features/authentication/ResetPassword';
+// import ForgetPassword from './features/authentication/ForgetPassword';
+// import ResetPassword from './features/authentication/ResetPassword';
 import Me from './features/user/Me';
 import Delivery from './features/user/Delivery';
 import Setting from './features/user/Setting';
@@ -74,14 +74,14 @@ const router = createBrowserRouter([
             path: '/users/log-in',
             element: <LogIn />,
           },
-          {
-            path: '/users/forget-password',
-            element: <ForgetPassword />,
-          },
-          {
-            path: '/users/reset-password/:token',
-            element: <ResetPassword />,
-          },
+          // {
+          //   path: '/users/forget-password',
+          //   element: <ForgetPassword />,
+          // },
+          // {
+          //   path: '/users/reset-password/:token',
+          //   element: <ResetPassword />,
+          // },
         ],
       },
       {
