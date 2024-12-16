@@ -4,7 +4,7 @@ import LinkButton from './LinkButton';
 function Logo() {
   return (
     <div className="hidden lg:flex">
-      <LinkButton to="/" type="logo">
+      <LinkButton to="/shopping-cart" type="logo">
         <div className="font-emoji text-4xl">🍕</div>
         <Heading type="logo">Pizzeria</Heading>
       </LinkButton>
