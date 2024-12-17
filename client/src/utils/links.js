@@ -1,6 +1,6 @@
 export const links = [
   { to: 'shopping-cart', label: 'Home' },
-  { to: 'menu', label: 'Menu' },
-  { to: 'about-us', label: 'About Us' },
-  { to: 'contact', label: 'Contact Us' },
+  { to: 'shopping-cart/menu', label: 'Menu' },
+  { to: 'shopping-cart/about-us', label: 'About Us' },
+  { to: 'shopping-cart/contact', label: 'Contact Us' },
 ];

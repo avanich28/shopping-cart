@@ -48,30 +48,30 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/menu',
+        path: '/shopping-cart/menu',
         element: <Menu />,
       },
       {
-        path: '/cart',
+        path: '/shopping-cart/cart',
         element: <Cart />,
       },
       {
-        path: '/about-us',
+        path: '/shopping-cart/about-us',
         element: <AboutUs />,
       },
       {
-        path: '/contact',
+        path: '/shopping-cart/contact',
         element: <Contact />,
       },
       {
         element: <ProtectedRoute isAuthenticated={!token} />,
         children: [
           {
-            path: '/users/sign-up',
+            path: '/shopping-cart/users/sign-up',
             element: <SignUp />,
           },
           {
-            path: '/users/log-in',
+            path: '/shopping-cart/users/log-in',
             element: <LogIn />,
           },
           // {
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute isAuthenticated={() => isAuthenticated()} />,
         children: [
           {
-            path: '/users/me',
+            path: '/shopping-cart/users/me',
             element: <Me />,
             children: [
               {
@@ -96,11 +96,11 @@ const router = createBrowserRouter([
                 element: <Navigate to="/users/me/delivery" replace />,
               },
               {
-                path: '/users/me/delivery',
+                path: '/shopping-cart/users/me/delivery',
                 element: <Delivery />,
               },
               {
-                path: '/users/me/setting',
+                path: '/shopping-cart/users/me/setting',
                 element: <Setting />,
               },
             ],
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute isAuthenticated={() => isAuthenticated2()} />,
         children: [
           {
-            path: '/order',
+            path: '/shopping-cart/order',
             element: <OrderForm />,
           },
         ],

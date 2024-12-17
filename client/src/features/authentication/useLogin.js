@@ -10,7 +10,7 @@ export function useLogin() {
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
       Cookies.set('token', user.token, { expires: 7, secure: true });
-      navigate('/');
+      navigate('/shopping-cart/');
       window.location.reload();
     },
     onError: (err) => {

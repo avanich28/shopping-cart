@@ -34,7 +34,7 @@ function HeaderNav() {
       <Button type="iconNav" onClick={toggleSearch}>
         <HiMiniMagnifyingGlass />
       </Button>
-      <LinkButton to="cart" type="iconNav" onClick={resetSearch}>
+      <LinkButton to="shopping-cart/cart" type="iconNav" onClick={resetSearch}>
         <CartCount />
       </LinkButton>
       <Button type="iconNav" onClick={toggleTheme}>
@@ -46,7 +46,7 @@ function HeaderNav() {
           {name}
         </LinkButton>
       ) : (
-        <LinkButton to="users/sign-up" type="link">
+        <LinkButton to="shopping-cart/users/sign-up" type="link">
           Sign Up
         </LinkButton>
       )}
@@ -54,7 +54,11 @@ function HeaderNav() {
       {name ? (
         <LogOut />
       ) : (
-        <LinkButton to="users/log-in" type="signIn" onClick={resetSearch}>
+        <LinkButton
+          to="shopping-cart/users/log-in"
+          type="signIn"
+          onClick={resetSearch}
+        >
           Log In
         </LinkButton>
       )}

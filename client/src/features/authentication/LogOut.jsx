@@ -7,12 +7,12 @@ function LogOut() {
 
   function handleLogout() {
     Cookies.remove('token');
-    navigate('/');
+    navigate('/shopping-cart/');
     window.location.reload();
   }
 
   return (
-    <LinkButton to="/" type="signIn" onClick={handleLogout}>
+    <LinkButton to="/shopping-cart" type="signIn" onClick={handleLogout}>
       Logout
     </LinkButton>
   );
