@@ -68,7 +68,7 @@ function HomeContent() {
         </div>
 
         {!isLoading && (
-          <LinkButton to="/menu" type="primary">
+          <LinkButton to="/shopping-cart/menu" type="primary">
             Order now
           </LinkButton>
         )}
