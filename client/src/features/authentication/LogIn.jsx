@@ -63,7 +63,7 @@ function LogIn() {
         msg="Don't have an account?"
         hasLabel={false}
       >
-        <LinkButton to="/users/sign-up" type="link2">
+        <LinkButton to="/shopping-cart/users/sign-up" type="link2">
           Sign Up
         </LinkButton>
       </FormRow>

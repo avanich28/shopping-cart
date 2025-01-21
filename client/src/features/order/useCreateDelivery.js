@@ -12,7 +12,7 @@ export function useCreateDelivery() {
     onSuccess: () => {
       console.log('hello');
       store.dispatch(clearCart());
-      navigate('/menu');
+      navigate('/shopping-cart/menu');
     },
     onError: (err) => {
       throw Error(err.message);

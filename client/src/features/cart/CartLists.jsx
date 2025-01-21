@@ -20,7 +20,7 @@ function CartLists() {
 
   function handleCreateOrder() {
     const token = Cookies.get('token') || '';
-    if (token) navigate('/order');
+    if (token) navigate('/shopping-cart/order');
     else toast.error('Please log in first!');
   }
 
@@ -45,7 +45,7 @@ function CartLists() {
       </ul>
 
       <footer className="mt-5 flex items-center justify-end gap-3">
-        <LinkButton to="/menu" type="secondary">
+        <LinkButton to="/shopping-cart/menu" type="secondary">
           Back to Menu
         </LinkButton>
         <Button type="quaternary" onClick={() => dispatch(clearCart())}>

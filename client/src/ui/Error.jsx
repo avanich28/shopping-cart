@@ -9,7 +9,7 @@ function Error() {
       <h1>Something went wrong 😢</h1>
       <p>{error.data || error.message}</p>
 
-      <LinkButton to="/">&larr; Go back</LinkButton>
+      <LinkButton to="/shopping-cart">&larr; Go back</LinkButton>
     </div>
   );
 }

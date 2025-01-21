@@ -85,7 +85,7 @@ function SignUp() {
         msg="Have already an account?"
         hasLabel={false}
       >
-        <LinkButton type="link2" to="/users/log-in">
+        <LinkButton type="link2" to="/shopping-cart/users/log-in">
           Log In
         </LinkButton>
       </FormRow>
