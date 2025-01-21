@@ -1,28 +1,15 @@
-import { useForm } from 'react-hook-form';
+import { useFormHook } from '../../hooks/useFormHook';
+import Button from '../../ui/Button';
 import Form from '../../ui/Form';
+import FormRow from '../../ui/FormRow';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
-import FormRow from '../../ui/FormRow';
-import Button from '../../ui/Button';
 import { useUpdatePassword } from './useUpdatePassword';
 
 function Password() {
   const { updatePassword, isLoading } = useUpdatePassword();
-  const { register, formState, handleSubmit, reset, getValues } = useForm();
-  const { errors } = formState;
-
-  function onSubmit(data) {
-    const { passwordCurrent, password, passwordConfirm } = data;
-
-    if (!passwordCurrent || !password || !passwordConfirm) return;
-
-    updatePassword(
-      { passwordCurrent, password, passwordConfirm },
-      {
-        onSettled: reset,
-      },
-    );
-  }
+  const { register, handleSubmit, getValues, errors, onSubmit } =
+    useFormHook(updatePassword);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

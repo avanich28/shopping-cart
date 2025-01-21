@@ -1,5 +1,3 @@
-import Error from '../ui/Error';
-
 const styles = {
   primary: 'capitalize flex flex-col gap-1 font-semibold text-sm',
   secondary:
@@ -22,7 +20,9 @@ function FormRow({
       {!hasLabel && msg?.length > 0 && <p>{msg}</p>}
       {children}
 
-      {error && <Error>{error}</Error>}
+      {error && (
+        <span className="text-xs font-normal text-red-600">{error}</span>
+      )}
     </div>
   );
 }

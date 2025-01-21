@@ -1,25 +1,15 @@
-import { useForm } from 'react-hook-form';
-import Form from '../../ui/Form';
-import Heading from '../../ui/Heading';
-import FormRow from '../../ui/FormRow';
-import Input from '../../ui/Input';
+import { useFormHook } from '../../hooks/useFormHook';
 import Button from '../../ui/Button';
+import Form from '../../ui/Form';
+import FormRow from '../../ui/FormRow';
+import Heading from '../../ui/Heading';
+import Input from '../../ui/Input';
 import { useForgetPassword } from './useForgetPassword';
 
 function ForgetPassword() {
-  const { register, formState, handleSubmit, reset } = useForm();
-  const { errors } = formState;
   const { forgetPassword, isLoading } = useForgetPassword();
-
-  function onSubmit(data) {
-    const { email } = data;
-    forgetPassword(
-      { email },
-      {
-        onSettled: reset,
-      },
-    );
-  }
+  const { register, handleSubmit, errors, onSubmit } =
+    useFormHook(forgetPassword);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

@@ -1,26 +1,17 @@
-import { useForm } from 'react-hook-form';
-
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
+import FormRow from '../../ui/FormRow';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
-import FormRow from '../../ui/FormRow';
 import LinkButton from '../../ui/LinkButton';
 
+import { useFormHook } from '../../hooks/useFormHook';
 import { useLogin } from './useLogIn';
 
 function LogIn() {
-  const { register, formState, handleSubmit, reset } = useForm();
-  const { errors } = formState;
   const { login, isLoading } = useLogin();
-
-  function onSubmit(data) {
-    const { email, password } = data;
-
-    if (!email || !password) return;
-
-    login({ email, password });
-  }
+  const { register, handleSubmit, reset, errors, onSubmit } =
+    useFormHook(login);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

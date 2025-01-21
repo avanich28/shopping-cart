@@ -1,24 +1,17 @@
-import { useForm } from 'react-hook-form';
-
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
+import FormRow from '../../ui/FormRow';
 import Heading from '../../ui/Heading';
 import Input from '../../ui/Input';
-import FormRow from '../../ui/FormRow';
 import LinkButton from '../../ui/LinkButton';
 
+import { useFormHook } from '../../hooks/useFormHook';
 import { useSignUp } from './useSignUp';
 
 function SignUp() {
   const { signup } = useSignUp();
-  const { formState, getValues, reset, register, handleSubmit } = useForm();
-  const { errors } = formState;
-
-  function onSubmit(data) {
-    signup(data, {
-      onSettled: reset,
-    });
-  }
+  const { register, handleSubmit, getValues, errors, onSubmit } =
+    useFormHook(signup);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
