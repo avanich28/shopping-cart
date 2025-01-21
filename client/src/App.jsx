@@ -93,7 +93,9 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <Navigate to="/users/me/delivery" replace />,
+                element: (
+                  <Navigate to="/shopping-cart/users/me/delivery" replace />
+                ),
               },
               {
                 path: '/shopping-cart/users/me/delivery',

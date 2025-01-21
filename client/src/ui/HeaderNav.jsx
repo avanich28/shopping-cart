@@ -42,7 +42,7 @@ function HeaderNav() {
       </Button>
 
       {name ? (
-        <LinkButton to="users/me" type="link">
+        <LinkButton to="shopping-cart/users/me" type="link">
           {name}
         </LinkButton>
       ) : (

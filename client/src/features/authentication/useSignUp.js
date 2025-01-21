@@ -8,7 +8,7 @@ export function useSignUp() {
   const { mutate: signup, isLoading } = useMutation({
     mutationFn: (user) => signupApi(user),
     onSuccess: () => {
-      navigate('/users/log-in');
+      navigate('/shopping-cart/users/log-in');
     },
   });
 
