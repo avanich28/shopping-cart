@@ -5,9 +5,12 @@ import FormRow from '../../ui/FormRow';
 import Button from '../../ui/Button';
 import { useUpdateProfile } from './useUpdateProfile';
 import { useFormHook } from '../../hooks/useFormHook';
+import { useUser } from '../authentication/useUser';
 
 function Profile() {
-  const { updateProfile, isLoading } = useUpdateProfile();
+  const { user } = useUser();
+  const { name, email } = user;
+  const { updateProfile, isPending } = useUpdateProfile();
   const { register, handleSubmit, errors, onSubmit } =
     useFormHook(updateProfile);
 
@@ -19,8 +22,9 @@ function Profile() {
           <Input
             type="text"
             id="name"
+            defaultValue={name}
             register={register}
-            disabled={isLoading}
+            disabled={isPending}
             data={{ required: 'This field is required' }}
           />
         </FormRow>
@@ -29,8 +33,9 @@ function Profile() {
           <Input
             type="email"
             id="email"
+            defaultValue={email}
             register={register}
-            disabled={isLoading}
+            disabled={isPending}
             data={{
               required: 'This field is required',
               pattern: {
@@ -41,8 +46,8 @@ function Profile() {
           />
         </FormRow>
 
-        <Button type="primary" btnType="submit" disabled={isLoading}>
-          UPDATE
+        <Button type="primary" btnType="submit" disabled={isPending}>
+          {isPending ? 'Updating...' : 'UPDATE'}
         </Button>
       </Form>
     </div>

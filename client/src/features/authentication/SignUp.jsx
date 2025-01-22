@@ -9,7 +9,7 @@ import { useFormHook } from '../../hooks/useFormHook';
 import { useSignUp } from './useSignUp';
 
 function SignUp() {
-  const { signup } = useSignUp();
+  const { signup, isPending } = useSignUp();
   const { register, handleSubmit, getValues, errors, onSubmit } =
     useFormHook(signup);
 
@@ -29,6 +29,7 @@ function SignUp() {
         <Input
           type="email"
           id="email"
+          placeholder="example@gmail.com"
           register={register}
           data={{
             required: 'This field is required',
@@ -71,7 +72,9 @@ function SignUp() {
         />
       </FormRow>
 
-      <Button type="primary">Sign up</Button>
+      <Button type="primary" btnType="submit" disabled={isPending}>
+        {isPending ? 'Submitting...' : 'Sign up'}
+      </Button>
 
       <FormRow
         getStyle="tertiary"

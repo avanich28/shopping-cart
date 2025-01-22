@@ -26,7 +26,7 @@ function Search() {
           type="text"
           id="search"
           placeholder="Search menu..."
-          isAuth={false}
+          isFormHook={false}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit(e) : '')}

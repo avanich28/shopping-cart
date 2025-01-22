@@ -6,12 +6,11 @@ import Input from '../../ui/Input';
 import LinkButton from '../../ui/LinkButton';
 
 import { useFormHook } from '../../hooks/useFormHook';
-import { useLogin } from './useLogIn';
+import { useLogin } from './useLogin';
 
 function LogIn() {
-  const { login, isLoading } = useLogin();
-  const { register, handleSubmit, reset, errors, onSubmit } =
-    useFormHook(login);
+  const { login, isPending } = useLogin();
+  const { register, handleSubmit, errors, onSubmit } = useFormHook(login);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -21,6 +20,8 @@ function LogIn() {
           type="email"
           id="email"
           register={register}
+          defaultValue="joyboy@test.com"
+          disabled={isPending}
           data={{ required: 'This field is required' }}
         />
       </FormRow>
@@ -30,17 +31,14 @@ function LogIn() {
           type="password"
           id="password"
           register={register}
+          defaultValue="test1234"
+          disabled={isPending}
           data={{ required: 'This field is required' }}
         />
       </FormRow>
 
-      <Button
-        type="primary"
-        btnType="submit"
-        onClick={reset}
-        disabled={isLoading}
-      >
-        Log in
+      <Button type="primary" btnType="submit" disabled={isPending}>
+        {isPending ? 'Submitting...' : 'Log in'}
       </Button>
       {/* 
       <FormRow getStyle="tertiary" hasLabel={false}>

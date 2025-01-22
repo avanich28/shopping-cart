@@ -8,7 +8,6 @@ function LinkDropDown() {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleLinkDropDown() {
-    console.log('hello');
     setIsOpen((is) => !is);
   }
 

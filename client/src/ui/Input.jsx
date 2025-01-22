@@ -10,18 +10,22 @@ function Input({
   register,
   data = {},
   setStyle = 'primary',
-  isAuth = true,
+  isFormHook = true,
+  defaultValue = '',
+  disabled,
   value,
   onChange,
   onKeyDown,
 }) {
   return (
     <>
-      {isAuth ? (
+      {isFormHook ? (
         <input
           className={styles[setStyle]}
-          type={type}
           id={id}
+          type={type}
+          defaultValue={defaultValue}
+          disabled={disabled}
           placeholder={placeholder}
           {...register(id, data)}
         />

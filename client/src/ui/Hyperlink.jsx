@@ -1,4 +1,4 @@
-function Hyperlink({ children, type = '', href = '/' }) {
+function Hyperlink({ children, type = '', href = '/shopping-cart' }) {
   const styles = {
     footer: 'transition-all ease-in-out hover:text-amber-300',
     gitHub:

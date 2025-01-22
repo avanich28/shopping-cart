@@ -15,7 +15,7 @@ export async function login(user) {
 
     if (!res.ok) throw new Error('Failed to log in!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
@@ -34,9 +34,10 @@ export async function getCurrentUser() {
 
     if (!res.ok) throw new Error('Failed to get user!');
 
-    const data = res.json();
+    const data = await res.json();
+    const { name, email } = data.data.user;
 
-    return data;
+    return { name, email };
   } catch (error) {
     throw Error(error);
   }
@@ -57,7 +58,7 @@ export async function signup(user) {
 
     if (!res.ok) throw new Error('Failed to signup!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
@@ -65,6 +66,7 @@ export async function signup(user) {
   }
 }
 
+/*
 export async function forgetPassword(email) {
   try {
     const res = await fetch(
@@ -80,7 +82,7 @@ export async function forgetPassword(email) {
 
     if (!res.ok) throw new Error('Failed to send an email!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
@@ -103,13 +105,13 @@ export async function resetPassword(resetPassword, resetToken) {
 
     if (!res.ok) throw new Error('Failed to send a reset password!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
     throw Error(error);
   }
-}
+} */
 
 export async function updateProfile(user) {
   const token = Cookies.get('token');
@@ -129,7 +131,7 @@ export async function updateProfile(user) {
 
     if (!res.ok) throw new Error('Failed to send email!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
@@ -155,7 +157,7 @@ export async function updatePassword(pwd) {
 
     if (!res.ok) throw new Error('Failed to send new password!');
 
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {

@@ -14,7 +14,7 @@ function HeaderNav() {
   const { theme, toggleTheme } = useTheme();
   const { toggleSearch, resetSearch } = useSearch();
   const { user } = useUser();
-  const name = user ? user.data.user.name : '';
+  const name = user ? user.name : '';
 
   return (
     <div className="ml-auto flex items-center gap-4 lg:gap-6">
@@ -34,7 +34,7 @@ function HeaderNav() {
       <Button type="iconNav" onClick={toggleSearch}>
         <HiMiniMagnifyingGlass />
       </Button>
-      <LinkButton to="shopping-cart/cart" type="iconNav" onClick={resetSearch}>
+      <LinkButton to="/shopping-cart/cart" type="iconNav" onClick={resetSearch}>
         <CartCount />
       </LinkButton>
       <Button type="iconNav" onClick={toggleTheme}>
@@ -42,11 +42,11 @@ function HeaderNav() {
       </Button>
 
       {name ? (
-        <LinkButton to="shopping-cart/users/me" type="link">
+        <LinkButton to="/shopping-cart/users/me" type="link">
           {name}
         </LinkButton>
       ) : (
-        <LinkButton to="shopping-cart/users/sign-up" type="link">
+        <LinkButton to="/shopping-cart/users/sign-up" type="link">
           Sign Up
         </LinkButton>
       )}
@@ -55,7 +55,7 @@ function HeaderNav() {
         <LogOut />
       ) : (
         <LinkButton
-          to="shopping-cart/users/log-in"
+          to="/shopping-cart/users/log-in"
           type="signIn"
           onClick={resetSearch}
         >

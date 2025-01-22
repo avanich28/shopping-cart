@@ -1,20 +1,18 @@
-import Cookies from 'js-cookie';
-import LinkButton from '../../ui/LinkButton';
-import { useNavigate } from 'react-router-dom';
+import Button from '../../ui/Button';
+import { useLogOut } from './useLogOut';
 
 function LogOut() {
-  const navigate = useNavigate();
-
-  function handleLogout() {
-    Cookies.remove('token');
-    navigate('/shopping-cart/');
-    window.location.reload();
-  }
+  const { logout, isPending } = useLogOut();
 
   return (
-    <LinkButton to="/shopping-cart" type="signIn" onClick={handleLogout}>
+    <Button
+      type="logOut"
+      btnType="submit"
+      disabled={isPending}
+      onClick={logout}
+    >
       Logout
-    </LinkButton>
+    </Button>
   );
 }
 

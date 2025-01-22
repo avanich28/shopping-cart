@@ -7,5 +7,11 @@ export function useFormHook(handler) {
   function onSubmit(data) {
     handler(data, { onSettled: reset });
   }
-  return { register, handleSubmit, reset, getValues, errors, onSubmit };
+  return {
+    register,
+    handleSubmit,
+    getValues,
+    errors,
+    onSubmit,
+  };
 }

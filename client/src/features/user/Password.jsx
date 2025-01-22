@@ -7,7 +7,7 @@ import Input from '../../ui/Input';
 import { useUpdatePassword } from './useUpdatePassword';
 
 function Password() {
-  const { updatePassword, isLoading } = useUpdatePassword();
+  const { updatePassword, isPending } = useUpdatePassword();
   const { register, handleSubmit, getValues, errors, onSubmit } =
     useFormHook(updatePassword);
 
@@ -22,6 +22,7 @@ function Password() {
           type="password"
           id="passwordCurrent"
           register={register}
+          disabled={isPending}
           data={{
             required: 'This field is required',
             minLength: {
@@ -37,6 +38,7 @@ function Password() {
           type="password"
           id="password"
           register={register}
+          disabled={isPending}
           data={{
             required: 'This field is required',
             minLength: {
@@ -55,6 +57,7 @@ function Password() {
           type="password"
           id="passwordConfirm"
           register={register}
+          disabled={isPending}
           data={{
             required: 'This field is required',
             validate: (value) =>
@@ -63,8 +66,8 @@ function Password() {
         />
       </FormRow>
 
-      <Button type="primary" btnType="submit" disabled={isLoading}>
-        UPDATE
+      <Button type="primary" btnType="submit" disabled={isPending}>
+        {isPending ? 'Updating...' : 'UPDATE'}
       </Button>
     </Form>
   );

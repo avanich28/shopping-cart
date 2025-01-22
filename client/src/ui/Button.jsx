@@ -14,6 +14,8 @@ const defaultStyles = {
   circleArrow: 'absolute text-6xl opacity-80 z-10 text-stone-50',
   iconNav: 'text-stone-800 text-2xl hover:text-white',
   quantity: 'text-2xl text-amber-300 hover:scale-110 active:scale-100',
+  logOut:
+    'rounded-full bg-stone-800 px-5 py-1 text-xs text-amber-300 hover:scale-[1.04] hover:text-amber-50 active:scale-100 uppercase',
 };
 
 function Button({
