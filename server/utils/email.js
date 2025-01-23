@@ -11,7 +11,7 @@ module.exports = class Email {
   }
 
   newTransport() {
-    // BUG NOT WORK
+    // NOT WORK
     if (process.env.NODE_ENV === "production") {
       return nodemailer.createTransport({
         host: process.env.SENDINBLUE_HOST,
